@@ -27,6 +27,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Use RSpec test framework
   gem 'rspec-rails'
+  # User FactoryBot instead of test fixtures
+  gem 'factory_bot_rails'
+  gem 'faker', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
