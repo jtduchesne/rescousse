@@ -34,6 +34,8 @@ module Rescousse
     # the framework and any gems in your application.
 
     config.generators do |g|
+      g.orm :active_record, primary_key_type: :uuid
+      
       g.system_tests = nil
       
       g.request_specs false

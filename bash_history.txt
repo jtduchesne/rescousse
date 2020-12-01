@@ -6,3 +6,6 @@ rails g rspec:install
 spring binstub rspec
 
 rails db:create
+
+rails g migration EnableExtensionPgcrypto
+rails db:migrate
