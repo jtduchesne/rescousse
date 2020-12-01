@@ -4,3 +4,5 @@ bundle install
 
 rails g rspec:install
 spring binstub rspec
+
+rails db:create
