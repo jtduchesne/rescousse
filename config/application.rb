@@ -36,6 +36,9 @@ module Rescousse
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
       
+      g.scaffold_stylesheet false
+      g.jbuilder false
+      
       g.system_tests = nil
       
       g.request_specs false
