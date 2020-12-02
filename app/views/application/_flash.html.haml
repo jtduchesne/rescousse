@@ -1,0 +1,5 @@
+- flash.each do |key, value|
+  .alert.alert-dismissible.fade.show{class: (key == :alert ? "alert-warning" : "alert-success"), role: "alert"}
+    %p.mb-1= raw value
+    %button.close{type: "button", data: {dismiss: "alert"}, aria: {label: t('close')}}
+      %span{aria: {hidden: "true"}} &times;

@@ -1,0 +1,18 @@
+en:
+  application:
+    header:
+      settings: Settings
+      user:
+        login: Login
+        logout: Logout
+    footer:
+      copyright: All rights reserved
+      built_with: Built with
+      licenses:
+        MIT: MIT license
+  
+  show:   Show
+  edit:   Edit
+  back:   Back
+  search: Find a bar
+  close:  Close

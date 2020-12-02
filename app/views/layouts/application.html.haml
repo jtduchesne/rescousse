@@ -22,6 +22,10 @@
     = render "bootstrap_js"
     = javascript_include_tag "application", 'data-turbolinks-track': 'reload'
   
-  %body
+  %body.bg-dark
+    %header
+      = render "header"
     %main
       = yield
+    %footer
+      = render "footer"

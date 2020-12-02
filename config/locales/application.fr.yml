@@ -1,0 +1,18 @@
+fr:
+  application:
+    header:
+      settings: Réglages
+      user:
+        login: Connexion
+        logout: Déconnexion
+    footer:
+      copyright: Tous droits réservés
+      built_with: Fait à l'aide de
+      licenses:
+        MIT: Licence MIT
+  
+  show:   Voir
+  edit:   Modifier
+  back:   Retour
+  search: Trouver un bar
+  close:  Fermer

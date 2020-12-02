@@ -1,0 +1,30 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-black.p-0{id: "navbar"}
+  .container
+    %a.navbar-brand{href: root_path(locale: params[:locale])}
+      %img.grow{src: "/images/logo.svg", height: "40"}
+      Rescousse
+    %button.navbar-toggler{type: "button", data: {toggle: "collapse", target: "#navbarResponsive"},
+                           aria: {controls: "navbarResponsive", expanded: "false", label: "Navigation"}}
+      %span.navbar-toggler-icon
+    .collapse.navbar-collapse{id: "navbarResponsive"}
+      %ul.navbar-nav.ml-auto
+        %form.form-inline
+          .input-group
+            %input.form-control{type: "search", placeholder: t('search'), aria: {label: t('search')}}
+            .input-group-append
+              %button.btn.btn-success{type: "submit"} &gt;
+        %li.nav-item.dropdown.ml-3
+          %a.grow.nav-link.dropdown-toggle{href: "#", role: "button", id: "dropdownSettings",
+                                           data: {toggle: "dropdown"}, title: t('.settings'),
+                                           aria: {haspopup: "true", expanded: "false"}}
+          .dropdown-menu.dropdown-menu-right{aria: {labelledby: "dropdownSettings"}}
+            %a.dropdown-item.small{href: "#"}= t('.user.login')
+            .dropdown-divider
+            - if I18n.locale == :fr
+              %a.dropdown-item.small{class: "disabled"} Français
+            - else
+              %a.dropdown-item.small{href: url_for(locale: "fr"), data: {turbolinks: "false"}} Français
+            - if I18n.locale == :en
+              %a.dropdown-item.small{class: "disabled"} English
+            - else
+              %a.dropdown-item.small{href: url_for(locale: "en"), data: {turbolinks: "false"}} English

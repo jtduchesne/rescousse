@@ -13,3 +13,50 @@
  *= require_tree .
  *= require_self
  */
+
+html, body {
+  position: relative;
+  min-height: 100%;
+}
+main {
+  min-height: calc(100vh - 50px - 35px);
+}
+
+header .dropdown-item.small {
+  padding: 0.15rem 1rem;
+}
+header .dropdown-item.small:hover {
+  background-color: rgba(108,117,125, 0.25);
+}
+
+footer {
+  height: 35px;
+  margin-top: 0;
+}
+footer:hover {
+  margin-top: -1em;
+}
+footer .text-partial-reset {
+  color: inherit !important;
+}
+footer:hover .text-partial-reset {
+  text-decoration: underline;
+}
+footer .hidden   { overflow: hidden; height: 0; }
+footer .hidden * { opacity: 0; }
+footer:hover .hidden   { height: 1em; }
+footer:hover .hidden * { opacity: 1; }
+footer, footer *, footer .hidden, footer .hidden * {
+  transition: all .5s;
+}
+
+.bg-black {
+    background-color: #000 !important;
+}
+.smaller {
+    font-size: 70%;
+    font-weight: 200;
+}
+
+.grow       { transition: all .4s ease; }
+.grow:hover { transform: scale(1.25); }

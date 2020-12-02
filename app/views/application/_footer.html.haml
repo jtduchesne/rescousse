@@ -1,0 +1,20 @@
+.bg-black
+  .container.text-center.text-white-50.py-1
+    %p.small.my-1
+      ©2020
+      %a.text-partial-reset{href: "https://www.linkedin.com/in/jtduchesne/", target: "_blank"}<
+        jtduchesne
+      %span.mx-0 &middot;
+      = t('.copyright')
+    .hidden
+      %p.smaller.mt-n1
+        = t('.built_with')
+        &colon;&nbsp;
+        %a.text-reset{target: "_blank", title: t('.licenses.MIT'),
+                      href: "https://rubyonrails.org"}> Ruby on Rails
+        &comma;&nbsp;
+        %a.text-reset{target: "_blank", title: t('.licenses.MIT'),
+                      href: "https://jquery.com"}> JQuery
+        &comma;&nbsp;
+        %a.text-reset{target: "_blank", title: t('.licenses.MIT'),
+                      href: "https://getbootstrap.com"}> Bootstrap
