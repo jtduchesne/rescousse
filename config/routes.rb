@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  scope "(:locale)/", locale: /fr|en/ do
+    root to: 'home#index', format: false
+  end
 end
