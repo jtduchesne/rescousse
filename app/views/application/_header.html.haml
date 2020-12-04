@@ -2,7 +2,7 @@
   .container
     %a.navbar-brand{href: root_path(locale: params[:locale])}
       %img.grow{src: "/images/logo.svg", height: "40"}
-      Rescousse
+      = t('.brand')
     %button.navbar-toggler{type: "button", data: {toggle: "collapse", target: "#navbarResponsive"},
                            aria: {controls: "navbarResponsive", expanded: "false", label: "Navigation"}}
       %span.navbar-toggler-icon

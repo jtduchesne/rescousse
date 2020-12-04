@@ -1,6 +1,9 @@
 en:
   application:
+    title: Rescue the bars
+    
     header:
+      brand: To the rescue of local bars
       settings: Settings
       user:
         login: Login

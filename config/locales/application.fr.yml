@@ -1,6 +1,9 @@
 fr:
   application:
+    title: Rescousse des bars
+    
     header:
+      brand: À la rescousse des bars
       settings: Réglages
       user:
         login: Connexion
