@@ -1,0 +1,21 @@
+#background {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  
+  width: 100%;
+  height: calc(100vh - 50px - 35px);
+  max-width: 512px;
+  
+  background: url(../images/rescousse.png) no-repeat center center;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  
+  opacity: 40%;
+}
+
+.carousel-item {
+  height: calc(100vh - 50px - 35px);
+}

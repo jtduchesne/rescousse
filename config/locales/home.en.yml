@@ -1,0 +1,31 @@
+en:
+  home:
+    index:
+      descriptions:
+        -
+          h: [To the rescue of the small neighborhood bars we love]
+          p:
+            - It's no secret that bars, especially small neighborhood bars, are struggling in this time of crisis.
+        -
+          quotes:
+            -
+              p: Le ministre Fitzgibbon prévoit qu’environ 12 000 restaurants ou bars sont sujets à une fermeture définitive à court terme.
+              f: <cite>La Presse</cite> October 1<small>st</small>, 2020
+        -
+          interval: 24000
+          h:
+            - But how can we help ?
+            - By pre-buying drinks in your favorite bar !
+          p:
+            - The money will go directly to it, and you'll get an electronic coupon to get your consumption when this damn health crisis is over.
+            - We don't even charge a commission !
+        -
+          interval: 12000
+          h: [Simple]
+          p:
+            - First find the bar you want to help using the search bar at the top.<br />Choose your consumption. Pay for it.
+            - You will receive a secure electronic coupon via email that can be used from your phone, or printed (like a train or bus ticket).
+        -
+          h: [Secure]
+          p: 
+            - All transactions are carried out by <a class="text-reset" href="https://www.braintreepayments.com/ca/learn/braintree-merchants" target="_blank"><em>Braintree</em></a>, the same company that provides payment solutions to the big players on the web (Uber, Airbnb, etc.).

@@ -1,0 +1,31 @@
+fr:
+  home:
+    index:
+      descriptions:
+        -
+          h: [À la rescousse des petits bars de quartier qu'on aime]
+          p:
+            - Ce n'est pas un secret pour personne, les bars en arrachent en cette période de crise, particulièrement les petits bars de quartier.
+        -
+          quotes:
+            -
+              p: Le ministre Fitzgibbon prévoit qu’environ 12 000 restaurants ou bars sont sujets à une fermeture définitive à court terme.
+              f: <cite>La Presse</cite> 1<small>ier</small> octobre 2020
+        -
+          interval: 24000
+          h:
+            - Comment les aider à passer au travers ?
+            - Pré-achetez des consommations dans votre bar préféré !
+          p:
+            - L'argent ira directement à celui-ci, et vous obtiendrez un coupon électronique pour obtenir votre consommation quand cette foutue crise sanitaire sera terminée.
+            - On ne se prend même pas de commission !
+        -
+          interval: 12000
+          h: [Simple]
+          p:
+            - Trouvez d'abord le bar que vous voulez aider à l'aide de la barre de recherche, en haut.<br />Choisissez votre consommation. Payez.
+            - Vous obtiendrez par courriel un coupon électronique sécurisé utilisable à partir de votre téléphone, ou imprimable (comme un billet de train ou d'autocar).
+        -
+          h: [Sécuritaire]
+          p: 
+            - Toutes les transactions sont effectuées par <a class="text-reset" href="https://www.braintreepayments.com/ca/learn/braintree-merchants" target="_blank"><em>Braintree</em></a>, la même compagnie qui fournit les solutions de paiements aux gros joueurs du web (Uber, Airbnb, etc.).

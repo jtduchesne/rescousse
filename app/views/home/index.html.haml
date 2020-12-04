@@ -1,5 +1,39 @@
 - content_for :navbar do
   = render 'searchbox'
 
-.text-center
-  %img.my-3{src: "/images/rescousse.png"}
+.container
+  #background
+  
+  #description.carousel.slide{data: {ride: "carousel", interval: "8000", wrap: "false"}}
+    - classes = ["active"]
+    - descriptions = t('.descriptions')
+    %ol.carousel-indicators
+      - descriptions.each_index do |index|
+        %li{data: {target: "#description", slide_to: index.to_s}, class: classes[index]}
+    
+    .carousel-inner.text-center.text-white
+      - descriptions.each.with_index do |description, index|
+        .carousel-item{class: classes[index], data: {interval: description[:interval]}}
+          .row.h-100.align-items-center.justify-content-center
+            .col-xl-8.col-lg-9.col-10
+              - if description.has_key?(:h)
+                - header = description[:h]
+                - if header.count > 1 || header[0].include?(" ")
+                  - header.each do |text|
+                    %h3= text
+                - else
+                  %h2= header[0]
+              - description[:p] && description[:p].each do |text|
+                %p= raw text
+              - description[:quotes] && description[:quotes].each do |quote|
+                %blockquote.blockquote
+                  %p.mb-0= "« #{quote[:p]} »"
+                  %span.blockquote-footer.text-white
+                    = raw quote[:f]
+    
+    %a.carousel-control-prev{href: "#description", role: "button", data: {slide: "prev"}}
+      %span.carousel-control-prev-icon{aria: {hidden: "true"}}
+      %span.sr-only= t('previous')
+    %a.carousel-control-next{href: "#description", role: "button", data: {slide: "next"}}
+      %span.carousel-control-next-icon{aria: {hidden: "true"}}
+      %span.sr-only= t('next')
