@@ -8,11 +8,7 @@
       %span.navbar-toggler-icon
     .collapse.navbar-collapse{id: "navbarResponsive"}
       %ul.navbar-nav.ml-auto
-        %form.form-inline
-          .input-group
-            %input.form-control{type: "search", placeholder: t('search'), aria: {label: t('search')}}
-            .input-group-append
-              %button.btn.btn-success{type: "submit"} &gt;
+        = yield :navbar
         %li.nav-item.dropdown.ml-3
           %a.grow.nav-link.dropdown-toggle{href: "#", role: "button", id: "dropdownSettings",
                                            data: {toggle: "dropdown"}, title: t('.settings'),
