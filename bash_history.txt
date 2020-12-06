@@ -11,3 +11,5 @@ rails g migration EnableExtensionPgcrypto
 rails db:migrate
 
 rails g controller Home index
+
+rails credentials:edit

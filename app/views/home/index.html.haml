@@ -37,3 +37,12 @@
     %a.carousel-control-next{href: "#description", role: "button", data: {slide: "next"}}
       %span.carousel-control-next-icon{aria: {hidden: "true"}}
       %span.sr-only= t('next')
+
+- content_for :javascripts do
+  %script{src: "https://maps.googleapis.com/maps/api/js?"+
+                  "libraries=places&"+
+                  "key=#{Rails.application.credentials.google[:maps][:api_key]}&"+
+                  "language=#{I18n.locale}&"+
+                  "callback=initMap",
+          async: true, defer: true}
+#map

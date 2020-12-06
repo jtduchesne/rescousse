@@ -18,12 +18,14 @@
     
     = render "bootstrap_css"
     = stylesheet_link_tag    "application", 'data-turbolinks-track': 'reload', media: 'all'
+    = yield :stylesheets if content_for?(:stylesheets)
     
     = render "bootstrap_js"
     = javascript_include_tag "application", 'data-turbolinks-track': 'reload'
+    = yield :javascripts if content_for?(:javascripts)
   
   %body.bg-dark
-    %header
+    %header.fixed-top
       = render "header"
     %main
       = yield

@@ -19,9 +19,14 @@ html, body {
   min-height: 100%;
 }
 main {
+  position: relative;
   min-height: calc(100vh - 50px - 35px);
 }
 
+header {
+  height: 50px;
+  margin-bottom: 50px;
+}
 header .dropdown-item.small {
   padding: 0.15rem 1rem;
 }
@@ -32,6 +37,7 @@ header .dropdown-item.small:hover {
 footer {
   height: 35px;
   margin-top: 0;
+  position: relative;
 }
 footer:hover {
   margin-top: -1em;
