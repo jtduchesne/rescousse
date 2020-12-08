@@ -13,3 +13,6 @@ rails db:migrate
 rails g controller Home index
 
 rails credentials:edit
+
+rails g model Position ip_address:inet city province country latitude:float longitude:float count:integer
+rails db:migrate
