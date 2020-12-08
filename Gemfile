@@ -19,6 +19,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'faraday'
+
 # Turbolinks makes following links in your web application faster
 gem 'turbolinks', '~> 5.2', '>= 5.2.1'
 # Reduces boot times through caching; required in config/boot.rb
@@ -27,9 +29,11 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Use RSpec test framework
   gem 'rspec-rails'
-  # User FactoryBot instead of test fixtures
+  # Use FactoryBot instead of test fixtures
   gem 'factory_bot_rails'
   gem 'faker', require: false
+  # Use Webmock to stub HTTP requests in tests
+  gem 'webmock', group: :test
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end

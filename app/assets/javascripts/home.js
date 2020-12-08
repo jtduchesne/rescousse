@@ -1,49 +1,55 @@
 function initMap() {
-  var montreal = { lat: 45.51240, lng: -73.55469 };
-  var fields = ['name','place_id','icon','geometry','address_components'];
+  var map   = document.getElementById('map');
+  var input = document.getElementById('searchInput');
+  input.value = "";
   
-  var center;
-  if (!navigator.doNotTrack && navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      center = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-    });
-  } else {
-    center = montreal;
-  }
+  var province = { lat: 47.0707212, lng: -70.5677533 };
+  var position = {
+    lat: parseFloat(map.dataset.lat),
+    lng: parseFloat(map.dataset.lng)
+  };
+  var zoom = ((position.lat === province.lat) && (position.lng === province.lng)) ? 8 : 12;
   
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: center,
-    zoom: 12,
+  var gmap = new google.maps.Map(map, {
+    center: position,
+    zoom: zoom,
     fullscreenControl: false,
     mapTypeControl:    false,
     streetViewControl: false,
     keyboardShortcuts: false,
-    minZoom: 9
+    minZoom: 8
   });
   
-  var input = document.getElementById('searchInput');
-  input.value = "";
+  var fields = ['name','place_id','icon','geometry','address_components'];
   
   var autocomplete = new google.maps.places.Autocomplete(input, {
     fields: fields,
     types: ['establishment'],
     componentRestrictions: {country: "ca"}
   });
-  autocomplete.bindTo("bounds", map);
+  autocomplete.bindTo("bounds", gmap);
+  
+  if (!navigator.doNotTrack && navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      gmap.setCenter({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      });
+      gmap.setZoom(12);
+      autocomplete.bindTo("bounds", gmap);
+    });
+  }
   
   var infowindow = new google.maps.InfoWindow();
-  var marker = new google.maps.Marker({ map: map });
+  var marker = new google.maps.Marker({ map: gmap });
   
-  map.addListener('click', function(event) {
+  gmap.addListener('click', function(event) {
     if (event.placeId) {
       stop();
       infowindow.close();
       marker.setVisible(false);
       
-      (new google.maps.places.PlacesService(map)).getDetails({
+      (new google.maps.places.PlacesService(gmap)).getDetails({
         placeId: event.placeId,
         fields: fields
       }, function(place, status) {
@@ -87,7 +93,7 @@ function initMap() {
       marker.setPosition(place.geometry.location);
       marker.setVisible(true);
       
-      map.panTo(place.geometry.location);
+      gmap.panTo(place.geometry.location);
       smoothZoomTo(17);
  
       var address = "";
@@ -105,7 +111,7 @@ function initMap() {
                               "</h6>"+
                               address +
                             "</div>");
-      infowindow.open(map, marker);
+      infowindow.open(gmap, marker);
     }
   }
   
@@ -118,6 +124,6 @@ function initMap() {
         });
         setTimeout(function() { map.setZoom(current) }, 80);
       }
-    })(map, value, map.getZoom())
+    })(gmap, value, gmap.getZoom())
   }
 }

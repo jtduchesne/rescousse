@@ -5,6 +5,14 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale.to_s.presence }
   end
   
+protected
+  def current_position
+    session[:position] ||= Position.find_or_create_by(
+      ip_address: request.remote_ip
+    ).increment(:count).slice(:lat, :lng)
+  end
+  helper_method :current_position
+  
 private
   def set_locale
     if locale = params[:locale].presence
