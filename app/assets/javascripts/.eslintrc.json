@@ -1,0 +1,17 @@
+{
+  "env": {
+    "browser": true,
+    "jquery": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 5
+  },
+  "globals": {
+    "Rescousse": "writable",
+    "google": "readonly"
+  },
+  "rules": {
+    "semi": "error"
+  }
+}
