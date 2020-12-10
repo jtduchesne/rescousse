@@ -1,0 +1,39 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @place.name
+%p
+  %b Address:
+  = @place.address
+%p
+  %b Hood:
+  = @place.hood
+%p
+  %b City:
+  = @place.city
+%p
+  %b Province:
+  = @place.province
+%p
+  %b Postcode:
+  = @place.postcode
+%p
+  %b Latitude:
+  = @place.latitude
+%p
+  %b Longitude:
+  = @place.longitude
+%p
+  %b Phone:
+  = @place.phone
+%p
+  %b Email:
+  = @place.email
+%p
+  %b Website:
+  = @place.website
+
+= link_to 'Edit', edit_place_path(@place)
+\|
+= link_to 'Back', places_path

@@ -1,0 +1,43 @@
+= form_for @place do |f|
+  - if @place.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@place.errors.count, "error")} prohibited this place from being saved:"
+      %ul
+        - @place.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :address
+    = f.text_field :address
+  .field
+    = f.label :hood
+    = f.text_field :hood
+  .field
+    = f.label :city
+    = f.text_field :city
+  .field
+    = f.label :province
+    = f.text_field :province
+  .field
+    = f.label :postcode
+    = f.text_field :postcode
+  .field
+    = f.label :latitude
+    = f.text_field :latitude
+  .field
+    = f.label :longitude
+    = f.text_field :longitude
+  .field
+    = f.label :phone
+    = f.text_field :phone
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :website
+    = f.text_field :website
+  .actions
+    = f.submit 'Save'
