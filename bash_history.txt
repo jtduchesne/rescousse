@@ -21,3 +21,7 @@ rails credentials:edit
 
 rails g scaffold Place name address hood city province postcode latitude:float longitude:float phone email website --no-assets
 rails db:migrate
+
+cd app/views/layouts
+ln -s application.html.haml _application.html.haml
+cd ../../..

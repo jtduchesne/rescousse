@@ -18,6 +18,8 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 
+# Ignore layout symlinks
+/app/views/layouts/_application.html.haml
 
 /public/assets
 .byebug_history
