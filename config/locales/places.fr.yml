@@ -1,0 +1,31 @@
+fr:
+  places:
+    index:
+      title: Bars déjà cherchés
+      empty: Aucun bar recherché pour l'instant...
+      edit: Modifier
+      delete: Supprimer
+      confirm: Êtes-vous sûr de vouloir supprimer '%{name}' ?
+    show:
+      title: "%{name}"
+    edit:
+      title: "%{name}"
+  
+  activerecord:
+    models:
+      place: Le bar
+    attributes:
+      place:
+        name:     Nom
+        address:  Adresse
+        hood:     Quartier
+        city:     Ville
+        province: Province
+        postcode: Code postal
+        
+        latitude:  Latitude
+        longitude: Longitude
+        
+        phone:   Téléphone
+        email:   Courriel
+        website: Site web

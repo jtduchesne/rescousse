@@ -1,7 +1,7 @@
-%h1 Editing place
+%h1= t('.title', name: @place.name)
 
 = render 'form'
 
-= link_to 'Show', @place
+= link_to t('show'), @place
 \|
-= link_to 'Back', places_path
+= link_to t('back'), places_path

@@ -166,7 +166,7 @@ fr:
       odd: "doit être impair"
       even: "doit être pair"
     template: &errors_template
-      header: "Impossible d'enregistrer %{model}"
+      header: "%{model} n'a pas pu être sauvegardé"
       body: "Veuillez vérifier les champs suivants:"
 
   activerecord:

@@ -1,0 +1,31 @@
+en:
+  places:
+    index:
+      title: Peviously searched bars
+      empty: No bar searched yet...
+      edit: Edit
+      delete: Delete
+      confirm: Are you sure you want to delete '%{name}' ?
+    show:
+      title: "%{name}"
+    edit:
+      title: "%{name}"
+  
+  activerecord:
+    models:
+      place: The bar
+    attributes:
+      place:
+        name:     Name
+        address:  Address
+        hood:     Neighborhood
+        city:     City
+        province: Province
+        postcode: Postal code
+        
+        latitude:  Latitude
+        longitude: Longitude
+        
+        phone:   Phone number
+        email:   Email address
+        website: Website

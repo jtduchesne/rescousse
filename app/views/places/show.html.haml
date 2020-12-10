@@ -1,39 +1,36 @@
-%p#notice= notice
+%h1= t('.title', name: @place.name)
 
-%p
-  %b Name:
-  = @place.name
-%p
-  %b Address:
-  = @place.address
-%p
-  %b Hood:
-  = @place.hood
-%p
-  %b City:
-  = @place.city
-%p
-  %b Province:
-  = @place.province
-%p
-  %b Postcode:
-  = @place.postcode
-%p
-  %b Latitude:
-  = @place.latitude
-%p
-  %b Longitude:
-  = @place.longitude
-%p
-  %b Phone:
-  = @place.phone
-%p
-  %b Email:
-  = @place.email
-%p
-  %b Website:
-  = @place.website
+%dl.row
+  %dt.col-3.text-right= Place.human_attribute_name(:address) + " :"
+  %dd.col-9= @place.address
+%dl.row
+  %dt.col-3.text-right= Place.human_attribute_name(:hood) + " :"
+  %dd.col-9= @place.hood
+%dl.row
+  %dt.col-3.text-right= Place.human_attribute_name(:city) + " :"
+  %dd.col-9= @place.city
+%dl.row
+  %dt.col-3.text-right= Place.human_attribute_name(:province) + " :"
+  %dd.col-9= @place.province
+%dl.row
+  %dt.col-3.text-right= Place.human_attribute_name(:postcode) + " :"
+  %dd.col-9= @place.postcode
+%dl.row
+  %dt.col-3.text-right= Place.human_attribute_name(:latitude) + " :"
+  %dd.col-9= @place.latitude
+%dl.row
+  %dt.col-3.text-right= Place.human_attribute_name(:longitude) + " :"
+  %dd.col-9= @place.longitude
+%dl.row
+  %dt.col-3.text-right= Place.human_attribute_name(:phone) + " :"
+  %dd.col-9= @place.phone
+%dl.row
+  %dt.col-3.text-right= Place.human_attribute_name(:email) + " :"
+  %dd.col-9= @place.email
+%dl.row
+  %dt.col-3.text-right= Place.human_attribute_name(:website) + " :"
+  %dd.col-9= @place.website
 
-= link_to 'Edit', edit_place_path(@place)
+= link_to t('edit'), edit_place_path(@place)
 \|
-= link_to 'Back', places_path
+= link_to t('back'), places_path

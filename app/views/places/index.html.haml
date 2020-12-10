@@ -1,19 +1,19 @@
-%h1 Listing places
+%h1= t('.title')
 
 %table
   %thead
     %tr
-      %th Name
-      %th Address
-      %th Hood
-      %th City
-      %th Province
-      %th Postcode
-      %th Latitude
-      %th Longitude
-      %th Phone
-      %th Email
-      %th Website
+      %th= Place.human_attribute_name(:name)
+      %th= Place.human_attribute_name(:address)
+      %th= Place.human_attribute_name(:hood)
+      %th= Place.human_attribute_name(:city)
+      %th= Place.human_attribute_name(:province)
+      %th= Place.human_attribute_name(:postcode)
+      %th= Place.human_attribute_name(:latitude)
+      %th= Place.human_attribute_name(:longitude)
+      %th= Place.human_attribute_name(:phone)
+      %th= Place.human_attribute_name(:email)
+      %th= Place.human_attribute_name(:website)
       %th
       %th
       %th
@@ -32,6 +32,6 @@
         %td= place.phone
         %td= place.email
         %td= place.website
-        %td= link_to 'Show', place
-        %td= link_to 'Edit', edit_place_path(place)
-        %td= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to t('show'), place
+        %td= link_to t('edit'), edit_place_path(place)
+        %td= link_to t('destroy'), place, method: :delete, data: { confirm: t('.confirm', name: place.name) }

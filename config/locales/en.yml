@@ -166,7 +166,7 @@ en:
       odd: "must be odd"
       even: "must be even"
     template: &errors_template
-      header: "%{model} cannot be saved"
+      header: "%{model} could not be saved"
       body: "There were problems with the following fields:"
 
   activerecord:
