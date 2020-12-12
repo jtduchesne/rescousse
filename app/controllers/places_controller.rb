@@ -21,7 +21,9 @@ class PlacesController < ApplicationController
   # POST /places
   # POST /places.json
   def create
-    @place = Place.new(place_params)
+    @place = Place.find_or_initialize_by(new_place_params.slice(:name, :city)) do |place|
+      place.assign_attributes(new_place_params)
+    end
 
     respond_to do |format|
       if @place.save
@@ -59,12 +61,13 @@ class PlacesController < ApplicationController
   end
 
 private
-  # Use callbacks to share common setup or constraints between actions.
   def set_place
     @place = Place.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
+  def new_place_params
+    params.require(:place).permit(:name, :address, :hood, :city, :province, :postcode, :latitude, :longitude)
+  end
   def place_params
     params.require(:place).permit(:name, :address, :hood, :city, :province, :postcode, :latitude, :longitude, :phone, :email, :website)
   end
