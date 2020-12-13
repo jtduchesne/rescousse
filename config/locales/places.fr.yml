@@ -21,6 +21,7 @@ fr:
         hood:     Quartier
         city:     Ville
         province: Province
+        country:  Pays
         postcode: Code postal
         
         latitude:  Latitude
@@ -29,3 +30,11 @@ fr:
         phone:   Téléphone
         email:   Courriel
         website: Site web
+    errors:
+      models:
+        place:
+          attributes:
+            province: 
+              inclusion: Seuls les bars du Québec sont admissibles
+            country: 
+              inclusion: Seuls les bars du Québec (Canada) sont admissibles

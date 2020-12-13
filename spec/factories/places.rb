@@ -6,6 +6,7 @@ FactoryBot.define do
     hood     { Faker::Address.community }
     city     { Faker::Address.city }
     province { "QC" }
+    country  { "CA" }
     postcode { [fsa, ldu].join(" ") }
     transient do
       postal_district { %w(G H J).sample }

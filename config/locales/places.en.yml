@@ -21,6 +21,7 @@ en:
         hood:     Neighborhood
         city:     City
         province: Province
+        country:  Country
         postcode: Postal code
         
         latitude:  Latitude
@@ -29,3 +30,11 @@ en:
         phone:   Phone number
         email:   Email address
         website: Website
+    errors:
+      models:
+        place:
+          attributes:
+            province: 
+              inclusion: Only bars in the province of Quebec are eligible
+            country: 
+              inclusion: Only bars in Quebec (Canada) are eligible

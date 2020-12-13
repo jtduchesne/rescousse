@@ -12,6 +12,7 @@ function initMap() {
   var $hood     = $("#place_hood", $form);
   var $city     = $("#place_city", $form);
   var $province = $("#place_province", $form);
+  var $country  = $("#place_country", $form);
   var $postcode = $("#place_postcode", $form);
   
   var $latitude  = $("#place_latitude", $form);
@@ -34,6 +35,7 @@ function initMap() {
     $hood.val(place.address_components[2].long_name);
     $city.val(place.address_components[3].long_name);
     $province.val(place.address_components[5].short_name);
+    $country.val(place.address_components[6].short_name);
     $postcode.val(place.address_components[7].long_name);
     
     if (place.geometry) {

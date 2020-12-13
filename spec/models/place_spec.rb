@@ -13,6 +13,13 @@ RSpec.describe Place, type: :model do
     expect(FactoryBot.build(:place, name: name, city: name)).to be_invalid
   end
   
+  it 'requires province to be "QC"' do
+    expect(FactoryBot.build(:place, province: "ON")).to be_invalid
+  end
+  it 'requires country to be "CA"' do
+    expect(FactoryBot.build(:place, country: "US")).to be_invalid
+  end
+  
   it 'does not require anything else' do
     expect(FactoryBot.build(:place, address: "")).to be_valid
     expect(FactoryBot.build(:place, hood: "")).to be_valid
@@ -48,6 +55,10 @@ RSpec.describe Place, type: :model do
   end
   describe '#province' do
     subject { place.province }
+    it { is_expected.to be_a(String) }
+  end
+  describe '#country' do
+    subject { place.country }
     it { is_expected.to be_a(String) }
   end
   describe '#postcode' do
