@@ -48,7 +48,6 @@
       this._icon    = "";
       this._title   = "";
       this._content = "";
-      this._place   = undefined;
     },
     
     get position()      { return this.marker.getPosition(); },
@@ -73,18 +72,22 @@
     },
     set place(value) {
       this._place = value;
-      this.clear();
       
-      if (value.geometry) {
+      if (value.geometry)
         this.position = value.geometry.location;
+      
+      if (value.valid) {
         this.label    = value.name;
         
         this.icon    = value.icon;
         this.title   = value.name;
         this.content = value.vicinity;
-        
-        if (this.options.autoShow) this.show();
+      } else {
+        this.clear();
+        this.content = value.getMessage();
       }
+      
+      if (this.options.autoShow) this.show();
     },
     
     options: {},

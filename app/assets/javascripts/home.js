@@ -3,10 +3,10 @@ function initMap() {
   
   var $form   = $("form");
   var $inputs = $("input[name!='authenticity_token']", $form);
-  resetForm();
   
   var $searchInput  = $("#searchInput", $form);
   var $searchButton = $("#searchButton", $form);
+  resetForm();
   
   var $address  = $("#place_address", $form);
   var $hood     = $("#place_hood", $form);
@@ -20,6 +20,7 @@ function initMap() {
   
   function resetForm() {
     $inputs.val("");
+    $searchButton.prop('disabled', true);
   }
   
   var mapTop = $map.offset().top - $("#navbar").outerHeight();
@@ -27,24 +28,20 @@ function initMap() {
     resetForm();
     $searchInput.val(place.name);
     
-    $address.val(
-      place.address_components.slice(0,2).map(function(v) {
-        return v.long_name;
-      }).join(", ")
-    );
-    $hood.val(place.address_components[2].long_name);
-    $city.val(place.address_components[3].long_name);
-    $province.val(place.address_components[5].short_name);
-    $country.val(place.address_components[6].short_name);
-    $postcode.val(place.address_components[7].long_name);
-    
-    if (place.geometry) {
-      $latitude.val(place.geometry.location.lat);
-      $longitude.val(place.geometry.location.lng);
+    if (place.valid) {
+      $address.val(place.address);
+      $hood.val(place.hood);
+      $city.val(place.city);
+      $province.val(place.province);
+      $country.val(place.country);
+      $postcode.val(place.postcode);
       
-      $searchButton.prop('disabled', false);
-    } else {
-      $searchButton.prop('disabled', true);
+      if (place.geometry) {
+        $latitude.val(place.geometry.location.lat);
+        $longitude.val(place.geometry.location.lng);
+        
+        $searchButton.prop('disabled', false);
+      }
     }
     
     $(".navbar-collapse").collapse('hide');

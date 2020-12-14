@@ -1,6 +1,7 @@
 //= require ./autocomplete.js
 //= require ./infomarker.js
 //= require ./map.js
+//= require ./place.js
 //= require ./placesservice.js
 
 (function($) {
@@ -20,6 +21,7 @@
     var autocomplete  = new Rescousse.Autocomplete(this[0], {fields: fields});
     autocomplete.bindTo("bounds", gmap);
     
+    var place         = new Rescousse.Place();
     var infomarker    = new Rescousse.InfoMarker(gmap, {labelColor: "#FFD"});
     var placesService = new Rescousse.PlacesService(gmap, {fields: fields});
     
@@ -47,23 +49,27 @@
       setPlace(autocomplete.getPlace());
     });
     
-    function setPlace(place) {
-      infomarker.place = place;
+    function setPlace(gplace) {
+      infomarker.place = place.set(gplace);
       
       if (fnCallback) fnCallback(place);
       
-      gmap.panTo(place.geometry.location);
-      
-      (function smoothZoom(gmap, value, current) {
-        if (current < value) {
-          var event = gmap.addListener('zoom_changed', function() {
-            google.maps.event.removeListener(event);
-            smoothZoom(gmap, value, current + 1);
-          });
-          setTimeout(function() { gmap.setZoom(current); }, 80);
-        }
-      })(gmap, options.zoomPlace, gmap.getZoom());
+      if (place.valid) {
+        gmap.panTo(gplace.geometry.location);
+        
+        (function smoothZoom(gmap, value, current) {
+          if (current < value) {
+            var event = gmap.addListener('zoom_changed', function() {
+              google.maps.event.removeListener(event);
+              smoothZoom(gmap, value, current + 1);
+            });
+            setTimeout(function() { gmap.setZoom(current); }, 80);
+          }
+        })(gmap, options.zoomPlace, gmap.getZoom());
+      }
     }
+    
+    return this;
   };
   $.fn.searchBox.defaults = {
     zoomCity:  12,
