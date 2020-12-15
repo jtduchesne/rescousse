@@ -21,3 +21,9 @@ fr:
   close:  Fermer
   previous: Précédent
   next:     Suivant
+  
+  views:
+    pagination:
+      previous: "&lsaquo; Préc."
+      next:     "Suiv. &rsaquo;"
+      truncate: "&hellip;"

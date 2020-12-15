@@ -21,3 +21,9 @@ en:
   close:  Close
   previous: Previous
   next:     Next
+  
+  views:
+    pagination:
+      previous: "&lsaquo; Prev"
+      next:     "Next &rsaquo;"
+      truncate: "&hellip;"
