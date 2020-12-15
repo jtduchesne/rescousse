@@ -25,3 +25,6 @@ rails db:migrate
 cd app/views/layouts
 ln -s application.html.haml _application.html.haml
 cd ../../..
+
+rails g kaminari:views default
+rails g kaminari:config
