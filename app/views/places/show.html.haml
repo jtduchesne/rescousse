@@ -1,36 +1,23 @@
-%h1= t('.title', name: @place.name)
+%h1.text-center.mb-3= t('.title', name: @place.name)
 
-%dl.row
+%dl.row.mb-0
   %dt.col-3.text-right= Place.human_attribute_name(:address) + " :"
   %dd.col-9= @place.address
-%dl.row
+%dl.row.mb-0
   %dt.col-3.text-right= Place.human_attribute_name(:hood) + " :"
   %dd.col-9= @place.hood
 %dl.row
   %dt.col-3.text-right= Place.human_attribute_name(:city) + " :"
   %dd.col-9= @place.city
-%dl.row
-  %dt.col-3.text-right= Place.human_attribute_name(:province) + " :"
-  %dd.col-9= @place.province
-%dl.row
-  %dt.col-3.text-right= Place.human_attribute_name(:postcode) + " :"
-  %dd.col-9= @place.postcode
-%dl.row
-  %dt.col-3.text-right= Place.human_attribute_name(:latitude) + " :"
-  %dd.col-9= @place.latitude
-%dl.row
-  %dt.col-3.text-right= Place.human_attribute_name(:longitude) + " :"
-  %dd.col-9= @place.longitude
-%dl.row
+%dl.row.mb-0
   %dt.col-3.text-right= Place.human_attribute_name(:phone) + " :"
   %dd.col-9= @place.phone
-%dl.row
+%dl.row.mb-0
   %dt.col-3.text-right= Place.human_attribute_name(:email) + " :"
   %dd.col-9= @place.email
 %dl.row
   %dt.col-3.text-right= Place.human_attribute_name(:website) + " :"
   %dd.col-9= @place.website
 
-= link_to t('edit'), edit_place_path(@place)
-\|
-= link_to t('back'), places_path
+- navbar_button(caption: t('edit'), href: edit_place_path(@place))
+- navbar_button(caption: t('back'), href: places_path)
