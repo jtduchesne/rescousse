@@ -21,6 +21,8 @@ gem 'jbuilder', '~> 2.7'
 
 # Pagination
 gem 'kaminari'
+# Form Builder for Bootstrap v4
+gem "bootstrap_form", "~> 4.0"
 
 # HTTP client library
 gem 'faraday'
