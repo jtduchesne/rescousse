@@ -1,0 +1,4 @@
+- style = local_assigns[:style] || "secondary"
+%li.nav-item.ml-1
+  %a.btn{href: local_assigns[:href] || "#", class: "btn-outline-#{style}"}
+    = local_assigns[:caption]
