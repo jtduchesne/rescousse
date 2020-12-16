@@ -41,7 +41,7 @@ class PlacesController < ApplicationController
   def update
     respond_to do |format|
       if @place.update(place_params)
-        format.html { redirect_to action: :show, id: @place.to_param }
+        format.html { redirect_to helpers.places_url }
         format.json { render :show, status: :ok, location: @place }
       else
         format.html { render :edit }

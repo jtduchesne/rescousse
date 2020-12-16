@@ -1,4 +1,4 @@
-= form_for @place do |f|
+= bootstrap_form_for @place, layout: :horizontal, label_col: "col-sm-3 text-right", control_col: "col-sm-8" do |f|
   - if @place.errors.any?
     #error_explanation
       %h2= t('errors.template.header', model: @place.model_name.human)
@@ -6,39 +6,17 @@
       %ul
         - @place.errors.full_messages.each do |message|
           %li= message
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :address
-    = f.text_field :address
-  .field
-    = f.label :hood
-    = f.text_field :hood
-  .field
-    = f.label :city
-    = f.text_field :city
-  .field
-    = f.label :province
-    = f.text_field :province
-  .field
-    = f.label :postcode
-    = f.text_field :postcode
-  .field
-    = f.label :latitude
-    = f.text_field :latitude
-  .field
-    = f.label :longitude
-    = f.text_field :longitude
-  .field
-    = f.label :phone
-    = f.text_field :phone
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :website
-    = f.text_field :website
-  .actions
-    = f.submit
+  
+  = f.text_field :name,    wrapper: {class: "mb-1"}
+  = f.text_field :address, wrapper: {class: "mb-1"}
+  = f.text_field :hood,    wrapper: {class: "mb-1"}
+  = f.text_field :city,    wrapper: {class: "mb-1"}
+  = f.text_field :postcode
+  
+  = f.phone_field :phone,  wrapper: {class: "mb-1"}
+  = f.email_field :email,  wrapper: {class: "mb-1"}
+  = f.url_field   :website
+  
+  .row.justify-content-center
+    = f.submit class: "btn btn-primary mx-1"
+    = link_to t('cancel'), places_path, class: "btn btn-secondary mx-1"
