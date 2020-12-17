@@ -1,4 +1,5 @@
 = form_with scope: :place, url: places_path, local: true do |f|
+  = f.hidden_field :google_maps_id
   = f.hidden_field :address
   = f.hidden_field :hood
   = f.hidden_field :city

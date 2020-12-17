@@ -28,3 +28,6 @@ cd ../../..
 
 rails g kaminari:views default
 rails g kaminari:config
+
+rails g migration AddGoogleMapsIdToPlace google_maps_id
+rails db:migrate

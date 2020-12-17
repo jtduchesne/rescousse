@@ -20,6 +20,10 @@ RSpec.describe Place, type: :model do
     expect(FactoryBot.build(:place, country: "US")).to be_invalid
   end
   
+  it 'requires a Google Maps ID' do
+    expect(FactoryBot.build(:place, google_maps_id: "")).to be_invalid
+  end
+  
   it 'does not require anything else' do
     expect(FactoryBot.build(:place, address: "")).to be_valid
     expect(FactoryBot.build(:place, hood: "")).to be_valid
@@ -28,7 +32,6 @@ RSpec.describe Place, type: :model do
     expect(FactoryBot.build(:place, latitude: "")).to be_valid
     expect(FactoryBot.build(:place, longitude: "")).to be_valid
     expect(FactoryBot.build(:place, phone: "")).to be_valid
-    expect(FactoryBot.build(:place, email: "")).to be_valid
     expect(FactoryBot.build(:place, website: "")).to be_valid
   end
   
@@ -75,12 +78,13 @@ RSpec.describe Place, type: :model do
     it { is_expected.to be_a(Float) }
   end
   
-  describe '#phone' do
-    subject { place.phone }
+  describe '#google_maps_id' do
+    subject { place.google_maps_id }
     it { is_expected.to be_a(String) }
   end
-  describe '#email' do
-    subject { place.email }
+  
+  describe '#phone' do
+    subject { place.phone }
     it { is_expected.to be_a(String) }
   end
   describe '#website' do

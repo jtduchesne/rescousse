@@ -8,6 +8,8 @@ function initMap() {
   var $searchButton = $("#searchButton", $form);
   resetForm();
   
+  var $googleMapsId = $("#place_google_maps_id", $form);
+  
   var $address  = $("#place_address", $form);
   var $hood     = $("#place_hood", $form);
   var $city     = $("#place_city", $form);
@@ -29,6 +31,8 @@ function initMap() {
     $searchInput.val(place.name);
     
     if (place.valid) {
+      $googleMapsId.val(place.place_id);
+      
       $address.val(place.address);
       $hood.val(place.hood);
       $city.val(place.city);

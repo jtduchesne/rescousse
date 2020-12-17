@@ -20,11 +20,12 @@ FactoryBot.define do
     latitude  { Faker::Address.latitude }
     longitude { Faker::Address.longitude }
     
+    google_maps_id { Faker::Alphanumeric.alphanumeric(number: 16) }
+    
     phone   { "(#{area_code}) #{200+rand(800)}-#{1000+rand(9000)}" }
     transient do
       area_code { {"G" => "418", "H" => "514", "J" => "819"}[postal_district] }
     end
-    email   { Faker::Internet.email(name: name, separators: ".") }
     website { Faker::Internet.domain_name(domain: name.gsub(/[.'+ ]+/, "-")) }
   end
 end

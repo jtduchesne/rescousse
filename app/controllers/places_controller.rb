@@ -66,9 +66,10 @@ private
   end
 
   def new_place_params
-    params.require(:place).permit(:name, :address, :hood, :city, :province, :country, :postcode, :latitude, :longitude)
+    params.require(:place).permit(:name, :address, :hood, :city, :province, :country, :postcode,
+                                         :latitude, :longitude, :google_maps_id)
   end
   def place_params
-    params.require(:place).permit(:name, :address, :hood, :city, :province, :postcode, :latitude, :longitude, :phone, :email, :website)
+    params.require(:place).permit(:name, :address, :hood, :city, :province, :postcode, :latitude, :longitude, :phone, :website)
   end
 end
