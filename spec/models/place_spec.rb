@@ -35,6 +35,76 @@ RSpec.describe Place, type: :model do
     expect(FactoryBot.build(:place, website: "")).to be_valid
   end
   
+  #= Behaviors ==================================================================#
+  
+  let(:response) { {status: 500} }
+  let!(:stub) { stub_request(:get, /maps.googleapis.com/).to_return(response) }
+  
+  describe 'external API requests (Google Maps API)' do
+    let(:new_values) { FactoryBot.build :place }
+    let(:valid_hash) { FactoryBot.create(:place_details_hash, place: new_values) }
+    
+    context 'on creation' do
+      subject { place.save! }
+      
+      it 'calls the API' do
+        subject
+        expect(stub).to have_been_requested
+      end
+      
+      context 'when response is valid' do
+        let(:response) { {status: 200, body: valid_hash.to_json} }
+        
+        it 'sets #city' do
+          expect{ subject }.to change{ place.city }.to(new_values.city)
+        end
+        
+        it 'sets #phone' do
+          expect{ subject }.to change{ place.phone }.to(new_values.phone)
+        end
+        it 'sets #website' do
+          expect{ subject }.to change{ place.website }.to(new_values.website)
+        end
+      end
+      context 'when response is invalid' do
+        let(:response) { {status: 423, body: "Whatever".to_json} }
+        
+        it 'does not change #city' do
+          expect{ subject }.not_to change{ place.city }
+        end
+        
+        it 'does not change #phone' do
+          expect{ subject }.not_to change{ place.phone }
+        end
+        it 'does not change #website' do
+          expect{ subject }.not_to change{ place.website }
+        end
+      end
+    end
+    
+    context 'on modification' do
+      let(:response) { {status: 200, body: valid_hash.to_json} }
+      
+      before do
+        @existing_place = FactoryBot.create(:place)
+        WebMock.reset!
+      end
+      let(:place) { Place.find_by!(name: @existing_place.name) }
+      
+      subject { place.update(name: "Changed") }
+      
+      it 'does not call the API' do
+        subject
+        expect(stub).not_to have_been_requested
+      end
+      
+      it 'does change the Place' do
+        expect{ subject }.to change{ place.name }.to "Changed"
+        expect(stub).not_to have_been_requested
+      end
+    end
+  end
+  
   #= Attributes =================================================================#
   
   let(:place) { FactoryBot.build(:place) }

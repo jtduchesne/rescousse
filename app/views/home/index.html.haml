@@ -41,7 +41,7 @@
 - content_for :javascripts do
   %script{src: "https://maps.googleapis.com/maps/api/js?"+
                   "libraries=places&"+
-                  "key=#{Rails.application.credentials.google[:maps][:api_key]}&"+
+                  "key=#{Rails.application.credentials.google[:maps][:javascript]}&"+
                   "language=#{I18n.locale}&"+
                   "callback=initMap",
           async: true, defer: true}
