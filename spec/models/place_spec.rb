@@ -20,6 +20,13 @@ RSpec.describe Place, type: :model do
     expect(FactoryBot.build(:place, country: "US")).to be_invalid
   end
   
+  it 'requires a latitude' do
+    expect(FactoryBot.build(:place, latitude: "")).to be_invalid
+  end
+  it 'requires a longitude' do
+    expect(FactoryBot.build(:place, longitude: "")).to be_invalid
+  end
+  
   it 'requires a Google Maps ID' do
     expect(FactoryBot.build(:place, google_maps_id: "")).to be_invalid
   end
@@ -29,8 +36,6 @@ RSpec.describe Place, type: :model do
     expect(FactoryBot.build(:place, hood: "")).to be_valid
     expect(FactoryBot.build(:place, city: "")).to be_valid
     expect(FactoryBot.build(:place, postcode: "")).to be_valid
-    expect(FactoryBot.build(:place, latitude: "")).to be_valid
-    expect(FactoryBot.build(:place, longitude: "")).to be_valid
     expect(FactoryBot.build(:place, phone: "")).to be_valid
     expect(FactoryBot.build(:place, website: "")).to be_valid
   end
@@ -55,8 +60,21 @@ RSpec.describe Place, type: :model do
       context 'when response is valid' do
         let(:response) { {status: 200, body: valid_hash.to_json} }
         
+        it 'sets #address' do
+          expect{ subject }.to change{ place.address }.to(new_values.address)
+        end
+        it 'sets #hood' do
+          expect{ subject }.to change{ place.hood }.to(new_values.hood)
+        end
         it 'sets #city' do
           expect{ subject }.to change{ place.city }.to(new_values.city)
+        end
+        it 'sets #province' do
+          place.province = "ON"
+          expect{ subject }.to change{ place.province }.to(new_values.province)
+        end
+        it 'sets #postcode' do
+          expect{ subject }.to change{ place.postcode }.to(new_values.postcode)
         end
         
         it 'sets #phone' do
@@ -65,12 +83,31 @@ RSpec.describe Place, type: :model do
         it 'sets #website' do
           expect{ subject }.to change{ place.website }.to(new_values.website)
         end
+        
+        it 'does not change #latitude' do
+          expect{ subject }.not_to change{ place.latitude }
+        end
+        it 'does not change #longitude' do
+          expect{ subject }.not_to change{ place.longitude }
+        end
       end
       context 'when response is invalid' do
         let(:response) { {status: 423, body: "Whatever".to_json} }
         
+        it 'does not change #address' do
+          expect{ subject }.not_to change{ place.address }
+        end
+        it 'does not change #hood' do
+          expect{ subject }.not_to change{ place.hood }
+        end
         it 'does not change #city' do
           expect{ subject }.not_to change{ place.city }
+        end
+        it 'does not change #province' do
+          expect{ subject }.not_to change{ place.province }
+        end
+        it 'does not change #postcode' do
+          expect{ subject }.not_to change{ place.postcode }
         end
         
         it 'does not change #phone' do
@@ -78,6 +115,13 @@ RSpec.describe Place, type: :model do
         end
         it 'does not change #website' do
           expect{ subject }.not_to change{ place.website }
+        end
+        
+        it 'does not change #latitude' do
+          expect{ subject }.not_to change{ place.latitude }
+        end
+        it 'does not change #longitude' do
+          expect{ subject }.not_to change{ place.longitude }
         end
       end
     end
@@ -117,6 +161,17 @@ RSpec.describe Place, type: :model do
   describe '#address' do
     subject { place.address }
     it { is_expected.to be_a(String) }
+    
+    it { is_expected.to start_with(place.number) }
+    it { is_expected.to end_with(place.street) }
+  end
+  describe '#number' do
+    subject { place.number }
+    it { is_expected.to be_a(String) }
+  end
+  describe '#street' do
+    subject { place.street }
+    it { is_expected.to be_a(String) }
   end
   describe '#hood' do
     subject { place.hood }
@@ -137,6 +192,11 @@ RSpec.describe Place, type: :model do
   describe '#postcode' do
     subject { place.postcode }
     it { is_expected.to be_a(String) }
+  end
+  describe '#fsa' do
+    subject { place.fsa }
+    it { is_expected.to be_a(String) }
+    it { is_expected.to eq place.postcode.split[0] }
   end
   
   describe '#latitude' do

@@ -10,13 +10,6 @@ function initMap() {
   
   var $googleMapsId = $("#place_google_maps_id", $form);
   
-  var $address  = $("#place_address", $form);
-  var $hood     = $("#place_hood", $form);
-  var $city     = $("#place_city", $form);
-  var $province = $("#place_province", $form);
-  var $country  = $("#place_country", $form);
-  var $postcode = $("#place_postcode", $form);
-  
   var $latitude  = $("#place_latitude", $form);
   var $longitude = $("#place_longitude", $form);
   
@@ -32,13 +25,6 @@ function initMap() {
     
     if (place.valid) {
       $googleMapsId.val(place.place_id);
-      
-      $address.val(place.address);
-      $hood.val(place.hood);
-      $city.val(place.city);
-      $province.val(place.province);
-      $country.val(place.country);
-      $postcode.val(place.postcode);
       
       if (place.geometry) {
         $latitude.val(place.geometry.location.lat);

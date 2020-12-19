@@ -14,7 +14,7 @@
           %h5.mb-1.mr-auto
             = link_to place.name, place_path(place), class: "text-reset"
           %small.mx-1.my-auto.text-muted
-            = place.city
+            = place.fsa + ", " + place.city
           = link_to edit_place_path(place), class: "mx-1 close grow", title: t('.edit') do
             %img.mx-1.my-auto{src: "/images/pencil.svg", width: "16", height: "16"}
           = link_to place_path(place), class: "mx-1 close grow", title: t('.delete'), method: :delete, data: { confirm: t('.confirm', name: place.name)} do

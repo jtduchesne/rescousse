@@ -2,7 +2,7 @@
   "use strict";
   
   var locale = document.documentElement.lang;
-  var components = ['country','province','city','hood','street'];
+  var components = ['country','province','city','hood','fsa'];
   
   function Place(options) {
     options = options || {};
@@ -17,13 +17,6 @@
       var self = this;
       gplace.address_components.forEach(function(c) {
         switch(c.types[0]) {
-        case 'street_number':
-          self.number = c.long_name;
-          break;
-        case 'route':
-          self.street = c.long_name;
-          self.validate('street');
-          break;
         case 'sublocality', 'sublocality_level_1':
           self.hood = c.long_name;
           self.validate('hood');
@@ -42,10 +35,10 @@
           break;
         case 'postal_code':
           self.postcode = c.long_name;
+          self.fsa = c.long_name.slice(0, 3);
           break;
         }
       });
-      this.address = [this.number, this.street].filter(function(c) { return c; }).join(", ");
       
       return this;
     },

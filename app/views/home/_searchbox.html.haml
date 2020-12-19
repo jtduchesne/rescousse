@@ -1,15 +1,10 @@
 = form_with scope: :place, url: places_path, local: true do |f|
-  = f.hidden_field :google_maps_id
-  = f.hidden_field :address
-  = f.hidden_field :hood
-  = f.hidden_field :city
-  = f.hidden_field :province
-  = f.hidden_field :country
-  = f.hidden_field :postcode
-  = f.hidden_field :latitude
-  = f.hidden_field :longitude
   .input-group
     %input.form-control{id: "searchInput", name: "place[name]", type: "search",
                         placeholder: t('search'), aria: {label: t('search')}}
     .input-group-append
       %button.btn.btn-success{id: "searchButton", type: "submit", disabled: true} &gt;
+  
+  = f.hidden_field :google_maps_id
+  = f.hidden_field :latitude
+  = f.hidden_field :longitude

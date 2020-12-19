@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :place do
     sequence(:name) { |n| "#{Faker::Restaurant.name} #{n.to_s}" }
     
-    address  { Faker::Address.street_address }
+    address  { Faker::Address.street_address.sub(/^(\d+)/, '\1,') }
     hood     { Faker::Address.community }
     city     { Faker::Address.city }
     province { "QC" }

@@ -21,7 +21,7 @@ class PlacesController < ApplicationController
   # POST /places
   # POST /places.json
   def create
-    @place = Place.find_or_initialize_by(new_place_params.slice(:name, :city)) do |place|
+    @place = Place.find_or_initialize_by(new_place_params.slice(:google_maps_id)) do |place|
       place.assign_attributes(new_place_params)
     end
 
@@ -66,8 +66,7 @@ private
   end
 
   def new_place_params
-    params.require(:place).permit(:name, :address, :hood, :city, :province, :country, :postcode,
-                                         :latitude, :longitude, :google_maps_id)
+    params.require(:place).permit(:name, :latitude, :longitude, :google_maps_id)
   end
   def place_params
     params.require(:place).permit(:name, :address, :hood, :city, :province, :postcode, :latitude, :longitude, :phone, :website)
