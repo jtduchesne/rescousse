@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users, except: [:new]
   
   scope locale: "fr", path_names: {new: "nouveau", edit: "modifier"} do
     resources :places, except: [:new], path: "endroits", as: "fr_places"
