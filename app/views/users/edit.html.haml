@@ -1,7 +1,6 @@
-%h1= t('.title', name: @user.name)
+%h1.text-center.mb-3= t('.title', name: @user.name)
 
 = render 'form'
 
-= link_to t('show'), user_path(@user)
-\|
-= link_to t('back'), users_path
+- navbar_button(caption: t('show'), href: user_path(@user))
+- navbar_button(caption: t('cancel'), href: users_path)

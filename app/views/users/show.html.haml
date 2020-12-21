@@ -7,6 +7,5 @@
   %dt.col-3.text-right= User.human_attribute_name(:email) + " :"
   %dd.col-9= @user.email
 
-= link_to t('edit'), edit_user_path(@user)
-\|
-= link_to t('back'), users_path
+- navbar_button(caption: t('edit'), href: edit_user_path(@user))
+- navbar_button(caption: t('back'), href: users_path)

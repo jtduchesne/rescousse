@@ -1,4 +1,4 @@
-= bootstrap_form_for @user do |f|
+= bootstrap_form_for @user, layout: :horizontal, label_col: "col-sm-3 text-right", control_col: "col-sm-8" do |f|
   - if @user.errors.any?
     #error_explanation
       %h2= t('errors.template.header', model: @user.model_name.human)
@@ -10,4 +10,6 @@
   = f.text_field :name
   = f.text_field :email
   
-  = f.submit
+  .row.justify-content-center
+    = f.submit class: "btn btn-primary mx-1"
+    = link_to t('cancel'), users_path, class: "btn btn-secondary mx-1"

@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  layout 'jumbotron'
+
   # GET /users
   def index
-    @users = User.all
+    @users = User.order(updated_at: :desc).page(params[:page])
   end
 
   # GET /users/1
