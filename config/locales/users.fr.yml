@@ -1,0 +1,20 @@
+fr:
+  users:
+    index:
+      title: Utilisateurs inscrits
+      empty: Aucun utilisateur pour l'instant'...
+      edit: Modifier
+      delete: Supprimer
+      confirm: Êtes-vous sûr de vouloir supprimer '%{name}' ?
+    show:
+      title: "%{name}"
+    edit:
+      title: "%{name}"
+  
+  activerecord:
+    models:
+      user: L'utilisateur
+    attributes:
+      user:
+        name:       Nom
+        email:      Courriel

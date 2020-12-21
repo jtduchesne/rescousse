@@ -1,0 +1,20 @@
+en:
+  users:
+    index:
+      title: Registered users
+      empty: No users yet...
+      edit: Edit
+      delete: Delete
+      confirm: Are you sure you want to delete '%{name}' ?
+    show:
+      title: "%{name}"
+    edit:
+      title: "%{name}"
+  
+  activerecord:
+    models:
+      user: The user
+    attributes:
+      user:
+        name:       Name
+        email:      Email
