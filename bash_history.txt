@@ -33,3 +33,6 @@ rails g migration AddGoogleMapsIdToPlace google_maps_id
 rails db:migrate
 
 rails credentials:edit
+
+rails g scaffold User name email --no-assets
+rails db:migrate
