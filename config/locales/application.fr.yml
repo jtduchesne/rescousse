@@ -8,6 +8,7 @@ fr:
       user:
         login: Connexion
         logout: Déconnexion
+        profile: Mon profil
     footer:
       copyright: Tous droits réservés
       built_with: Fait à l'aide de

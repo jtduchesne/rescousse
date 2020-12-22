@@ -13,8 +13,16 @@
           %a.grow.nav-link.dropdown-toggle{href: "#", role: "button", id: "dropdownSettings",
                                            data: {toggle: "dropdown"}, title: t('.settings'),
                                            aria: {haspopup: "true", expanded: "false"}}
+            = I18n.locale.to_s.upcase
           .dropdown-menu.dropdown-menu-right{aria: {labelledby: "dropdownSettings"}}
-            %a.dropdown-item.small{href: "#"}= t('.user.login')
+            - if logged_out?
+              %a.dropdown-item.small{href: "#"}= t('.user.login')
+            - else
+              %h6.dropdown-header.small= current_user.first_name
+              = link_to "#", class: "dropdown-item small" do
+                = t('.user.profile')
+              = link_to "#", class: "dropdown-item small" do
+                = t('.user.logout')
             .dropdown-divider
             - if I18n.locale == :fr
               %a.dropdown-item.small{class: "disabled"} Français

@@ -8,6 +8,7 @@ en:
       user:
         login: Login
         logout: Logout
+        profile: My profile
     footer:
       copyright: All rights reserved
       built_with: Built with

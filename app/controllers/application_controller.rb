@@ -13,6 +13,31 @@ protected
   end
   helper_method :current_position
   
+  def current_user
+    if @current_user.nil?
+      @current_user = session[:user_id] ? User.find(session[:user_id]) : false
+    end
+    @current_user
+  end
+  def current_user=(user)
+    reset_session
+    if user
+      @current_user = user
+      session[:user_id] = user.id
+    else
+      @current_user = false
+    end
+  end
+  helper_method :current_user
+  
+  def logged_in?
+    !!current_user
+  end
+  def logged_out?
+    !current_user
+  end
+  helper_method :logged_in?, :logged_out?
+  
 private
   def set_locale
     if locale = params[:locale].presence
