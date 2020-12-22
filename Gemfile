@@ -24,6 +24,9 @@ gem 'kaminari'
 # Form Builder for Bootstrap v4
 gem "bootstrap_form", "~> 4.0"
 
+# Authentication
+gem 'omniauth-facebook'
+gem "omniauth-rails_csrf_protection"
 # HTTP client library
 gem 'faraday'
 
