@@ -31,4 +31,14 @@ RSpec.describe User, type: :model do
     subject { user.email }
     it { is_expected.to be_a(String) }
   end
+  
+  #= Associations ===============================================================#
+  
+  describe '#authentication' do
+    let(:user) { FactoryBot.create(:user, :authenticated) }
+    
+    subject { user.authentications }
+    it { expect(subject).to be_an(Enumerable) }
+    it { expect(subject.take).to be_an(Authentication) }
+  end
 end
