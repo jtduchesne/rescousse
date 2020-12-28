@@ -10,25 +10,28 @@
       %ul.navbar-nav.ml-auto
         = yield :navbar
         %li.nav-item.dropdown.ml-3
-          %a.grow.nav-link.dropdown-toggle{href: "#", role: "button", id: "dropdownSettings",
-                                           data: {toggle: "dropdown"}, title: t('.settings'),
-                                           aria: {haspopup: "true", expanded: "false"}}
-            = I18n.locale.to_s.upcase
-          .dropdown-menu.dropdown-menu-right{aria: {labelledby: "dropdownSettings"}}
-            - if logged_out?
-              %a.dropdown-item.small{href: "#"}= t('.user.login')
-            - else
-              %h6.dropdown-header.small= current_user.first_name
-              = link_to "#", class: "dropdown-item small" do
-                = t('.user.profile')
-              = link_to "#", class: "dropdown-item small" do
-                = t('.user.logout')
-            .dropdown-divider
-            - if I18n.locale == :fr
-              %a.dropdown-item.small{class: "disabled"} Français
-            - else
-              %a.dropdown-item.small{href: url_for(locale: "fr"), data: {turbolinks: "false"}} Français
-            - if I18n.locale == :en
-              %a.dropdown-item.small{class: "disabled"} English
-            - else
-              %a.dropdown-item.small{href: url_for(locale: "en"), data: {turbolinks: "false"}} English
+          .btn-group
+            %button.btn.nav-link{data: {toggle: "dropdown"}}
+              = I18n.locale.to_s.upcase
+            %button.btn.nav-link.grow{class: "dropdown-toggle dropdown-toggle-split",
+                                      id: "dropdownSettings",
+                                      data: {toggle: "dropdown"}, title: t('.settings'),
+                                      aria: {haspopup: "true", expanded: "false"}}
+            .dropdown-menu.dropdown-menu-right{aria: {labelledby: "dropdownSettings"}}
+              - if logged_out?
+                %a.dropdown-item.small{href: login_path}= t('.user.login')
+              - else
+                %h6.dropdown-header.small= current_user.name
+                = link_to "#", class: "dropdown-item small" do
+                  = t('.user.profile')
+                = link_to logout_path, class: "dropdown-item small" do
+                  = t('.user.logout')
+              .dropdown-divider
+              - if I18n.locale == :fr
+                %a.dropdown-item.small{class: "disabled"} Français
+              - else
+                %a.dropdown-item.small{href: url_for(locale: "fr"), data: {turbolinks: "false"}} Français
+              - if I18n.locale == :en
+                %a.dropdown-item.small{class: "disabled"} English
+              - else
+                %a.dropdown-item.small{href: url_for(locale: "en"), data: {turbolinks: "false"}} English

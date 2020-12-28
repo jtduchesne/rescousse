@@ -1,0 +1,15 @@
+%h1.text-center.mb-3= t('.title')
+
+%p.text-center= t('.body')
+
+.row.justify-content-center
+  = button_to auth_path(provider: 'facebook', locale: nil), class: "btn btn-primary btn-facebook mx-1", method: :post do
+    %img.mr-1{src: "/images/facebook_logo_24x24.png", width: 24, height: 24}
+    = t('.facebook')
+  = link_to t('cancel'), root_path, class: "btn btn-secondary mx-1"
+.row.justify-content-center
+  %a.text-reset{href: "#facebook", data: {toggle: "collapse"}, aria: {expanded: "false", controls: "facebook"}}
+    %small= t('.why.title')
+#facebook.row.justify-content-center.collapse.text-center
+  .col-9
+    %small= t('.why.html')

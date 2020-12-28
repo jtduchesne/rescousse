@@ -1,0 +1,18 @@
+en:
+  user:
+    new:
+      title: Login
+      body:  Easily connect using your facebook account.
+      
+      facebook: Connect via Facebook
+      why:
+        title: Why facebook ?
+        html:  We only need your <strong><em>name</em></strong> and your <strong><em>email address</em></strong>,
+               and facebook got all that already without the need for an X<small>th</small> password.<br />
+               NO other information is retrieved from your facebook account, and NO other information will
+               be sent to it either.
+    
+    logged_in:  "You are now logged in %{name}"
+    logged_out: "You are now logged out"
+    rejected:   "Connection rejected by %{by}"
+    failure:    "Connection failed: %{msg}"

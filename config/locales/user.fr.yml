@@ -1,0 +1,19 @@
+fr:
+  user:
+    new:
+      title: Connexion
+      body:  Connectez-vous facilement à l'aide de votre compte facebook.
+      
+      facebook: Connexion via Facebook
+      why: 
+        title: Pourquoi facebook ?
+        html:  Nous n'avons besoin que de votre <strong><em>nom</em></strong> et de votre
+               <strong><em>adresse courriel</em></strong>, et facebook peut nous donner
+               tout ça sans avoir besoin d'un X<small>ième</small> mot de passe.<br />
+               AUCUNE autre information n'est extraite depuis votre compte facebook,
+               et AUCUNE autre information n'y sera transmise.
+    
+    logged_in:  "Vous êtes maintenant connecté %{name}"
+    logged_out: "Vous êtes maintenant déconnecté"
+    rejected:   "Connexion refusée par %{by}"
+    failure:    "La connexion a échoué: %{msg}"
