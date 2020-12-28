@@ -1,0 +1,9 @@
+#toaster
+  - flash.each do |key, value|
+    .toast{role: "alert", data: {autohide: (key != 'alert').to_s, delay: 8000},
+                          aria: {live: "assertive", atomic: "true"}}
+      .toast-header
+        %button.ml-auto.my-0.close{type: "button", data: {dismiss: "toast"}, aria: {label: "Close"}}
+          %span{aria: {hidden: "true"}} &times;
+      .toast-body
+        %p.mb-1= value

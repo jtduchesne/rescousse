@@ -67,3 +67,9 @@ footer, footer *, footer .hidden, footer .hidden * {
 
 .grow       { transition: all .4s ease; }
 .grow:hover { transform: scale(1.25); }
+
+#toaster {
+  position: fixed;
+  top: calc(50px + 1em);
+  right: 1em;
+}

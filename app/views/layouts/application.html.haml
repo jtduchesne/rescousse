@@ -29,5 +29,7 @@
       = render "header"
     %main
       = yield
+      - if flash.any?
+        = render 'toasts'
     %footer
       = render "footer"
