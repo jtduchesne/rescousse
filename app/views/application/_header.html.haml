@@ -8,11 +8,15 @@
       %span.navbar-toggler-icon
     .collapse.navbar-collapse{id: "navbarResponsive"}
       %ul.navbar-nav.ml-auto
-        = yield :navbar
+        %li.nav-item
+          = yield :navbar
         %li.nav-item.dropdown.ml-3
-          .btn-group
-            %button.btn.nav-link{data: {toggle: "dropdown"}}
-              = I18n.locale.to_s.upcase
+          .btn-group.my-n05
+            - if logged_in?
+              %button.btn.nav-link{class: "border border-dark rounded-circle",
+                                   id: "avatar",
+                                   data: {toggle: "dropdown"}, title: current_user.name}
+                = current_user.initials
             %button.btn.nav-link.grow{class: "dropdown-toggle dropdown-toggle-split",
                                       id: "dropdownSettings",
                                       data: {toggle: "dropdown"}, title: t('.settings'),
@@ -21,7 +25,7 @@
               - if logged_out?
                 %a.dropdown-item.small{href: login_path}= t('.user.login')
               - else
-                %h6.dropdown-header.small= current_user.name
+                %h6.dropdown-header.small= current_user.first_name
                 = link_to "#", class: "dropdown-item small" do
                   = t('.user.profile')
                 = link_to logout_path, class: "dropdown-item small" do

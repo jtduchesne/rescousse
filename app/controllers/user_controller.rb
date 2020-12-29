@@ -14,7 +14,7 @@ class UserController < ApplicationController
   # GET /auth/:provider/callback
   def create
     self.current_user = User.from_omniauth(auth_params)
-    redirect_to root_url, notice: t('user.logged_in', name: current_user.name)
+    redirect_to root_url, notice: t('user.logged_in', name: current_user.first_name)
   end
 
   # GET /auth/failure

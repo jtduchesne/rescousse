@@ -22,9 +22,48 @@ RSpec.describe User, type: :model do
   
   let(:user) { FactoryBot.build(:user) }
   
+  describe '#first_name' do
+    subject { user.first_name }
+    it { is_expected.to be_a(String) }
+    
+    it 'returns the first part of #name' do
+      expect(user.name).to start_with subject
+    end
+    it 'works with compound names' do
+      user.name = "Jean-Test Lastname"
+      expect(subject).to eq "Jean-Test"
+    end
+  end
+  
   describe '#name' do
     subject { user.name }
     it { is_expected.to be_a(String) }
+  end
+  
+  describe '#initials' do
+    subject { user.initials }
+    it { is_expected.to be_a(String) }
+    
+    it 'returns the first letters of every names' do
+      user.name = "Test Name"
+      expect(subject).to eq "TN"
+    end
+    it 'returns only capital letters' do
+      user.name = "test name"
+      expect(subject).to eq "TN"
+    end
+    it 'works with compound names' do
+      user.name = "Jean-Test Lastname"
+      expect(subject).to eq "JTL"
+    end
+    it 'returns a maximum of 3 letters' do
+      user.name = "Jean-Test Last Name"
+      expect(subject).to eq "JTL"
+    end
+    it 'skips 2 letters or less middle names' do
+      user.name = "Homer J. Simpson"
+      expect(subject).to eq "HS"
+    end
   end
   
   describe '#email' do

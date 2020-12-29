@@ -68,6 +68,16 @@ footer, footer *, footer .hidden, footer .hidden * {
 .grow       { transition: all .4s ease; }
 .grow:hover { transform: scale(1.25); }
 
+#avatar.border {
+  font-weight: 500;
+  padding: .25rem;
+  border-width: 3px !important;
+}
+.my-n05 {
+  margin-top: -0.125rem !important;
+  margin-bottom: -0.125rem !important;
+}
+
 #toaster {
   position: fixed;
   top: calc(50px + 1em);

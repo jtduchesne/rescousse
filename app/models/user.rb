@@ -7,6 +7,14 @@ class User < ApplicationRecord
   
   has_many :authentications, autosave: true
   
+  def first_name
+    @first_name ||= name.split(/\s+/, 2)[0]
+  end
+  
+  def initials
+    @initials ||= name.split(/\W+/).reject{|n| n.length <= 2}.first(3).map(&:first).join.upcase
+  end
+  
   def self.from_omniauth(auth_hash)
     User.joins(:authentications).where(authentications: {
       provider: auth_hash.fetch('provider'),
