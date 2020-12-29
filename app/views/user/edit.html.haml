@@ -1,0 +1,5 @@
+%h1.text-center.mb-3= t('.title', name: @user.name)
+
+= render 'form'
+
+- navbar_button(caption: t('cancel'), href: current_user_path)

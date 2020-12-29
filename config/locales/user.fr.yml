@@ -12,6 +12,10 @@ fr:
                tout ça sans avoir besoin d'un X<small>ième</small> mot de passe.<br />
                AUCUNE autre information n'est extraite depuis votre compte facebook,
                et AUCUNE autre information n'y sera transmise.
+    show:
+      title: "%{name}"
+    edit:
+      title: "%{name}"
     
     logged_in:  "Vous êtes maintenant connecté %{name}"
     logged_out: "Vous êtes maintenant déconnecté"

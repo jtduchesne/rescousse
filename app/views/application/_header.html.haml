@@ -26,7 +26,7 @@
                 %a.dropdown-item.small{href: login_path}= t('.user.login')
               - else
                 %h6.dropdown-header.small= current_user.first_name
-                = link_to "#", class: "dropdown-item small" do
+                = link_to current_user_path, class: "dropdown-item small" do
                   = t('.user.profile')
                 = link_to logout_path, class: "dropdown-item small" do
                   = t('.user.logout')

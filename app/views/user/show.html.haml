@@ -1,0 +1,8 @@
+%h1.text-center.mb-3= t('.title', name: @user.name)
+
+%dl.row
+  %dt.col-5.text-right= User.human_attribute_name(:email) + " :"
+  %dd.col-7= @user.email
+
+- navbar_button(caption: t('edit'), href: edit_current_user_path)
+- navbar_button(caption: t('back'), href: root_path)

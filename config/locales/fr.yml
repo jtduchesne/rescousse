@@ -133,7 +133,7 @@ fr:
       prompt: "Veuillez sélectionner"
     submit:
       create: "Créer"
-      update: "Modifier"
+      update: "Enregistrer"
       submit: "Enregistrer"
 
   attributes:

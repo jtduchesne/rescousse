@@ -11,6 +11,10 @@ en:
                and facebook got all that already without the need for an X<small>th</small> password.<br />
                NO other information is retrieved from your facebook account, and NO other information will
                be sent to it either.
+    show:
+      title: "%{name}"
+    edit:
+      title: "%{name}"
     
     logged_in:  "You are now logged in %{name}"
     logged_out: "You are now logged out"
