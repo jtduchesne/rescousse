@@ -1,4 +1,6 @@
 class UserController < ApplicationController
+  before_action :get_referer_from_session, only: [:destroy, :create, :failure]
+
   layout 'jumbotron'
 
   # GET /login
@@ -14,7 +16,7 @@ class UserController < ApplicationController
   # GET /auth/:provider/callback
   def create
     self.current_user = User.from_omniauth(auth_params)
-    redirect_to root_url, notice: t('user.logged_in', name: current_user.first_name)
+    redirect_to @referer || root_url, notice: t('user.logged_in', name: current_user.first_name)
   end
 
   # GET /auth/failure
@@ -28,7 +30,10 @@ class UserController < ApplicationController
   end
 
   #--------------------------------------------------------------------------------#
-  before_action :set_user, only: [:show, :edit, :update]
+  with_options only: [:show, :edit, :update] do
+    before_action :require_login
+    before_action :set_user
+  end
 
   # GET /user
   def show
@@ -52,6 +57,10 @@ class UserController < ApplicationController
   end
 
 private
+  def get_referer_from_session
+    @referer = session.delete(:referer).presence
+  end
+  
   def set_user
     @user = current_user
   end

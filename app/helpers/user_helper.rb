@@ -1,4 +1,7 @@
 module UserHelper
+  def login_url(opts = {})
+    en? ? en_login_url(opts) : fr_login_url(opts)
+  end
   def login_path(opts = {})
     en? ? en_login_path(opts) : fr_login_path(opts)
   end

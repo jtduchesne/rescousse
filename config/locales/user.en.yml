@@ -13,6 +13,9 @@ en:
                be sent to it either.
     show:
       title: "%{name}"
+      
+      show_places: Places
+      show_users:  Users
     edit:
       title: "%{name}"
     

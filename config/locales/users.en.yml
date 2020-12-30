@@ -16,5 +16,10 @@ en:
       user: The user
     attributes:
       user:
-        name:       Name
-        email:      Email
+        name:  Name
+        email: Email
+        role:  Role
+      role:
+        names:
+          usual:         None
+          administrator: Administrator

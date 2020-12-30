@@ -6,6 +6,16 @@ class ApplicationController < ActionController::Base
   end
   
 protected
+  def require_login
+    unless logged_in?
+      session[:referer] = request.url
+      redirect_to helpers.login_url
+    end
+  end
+  def require_admin
+    redirect_to helpers.root_url unless logged_in_as_admin?
+  end
+  
   def current_position
     session[:position] ||= Position.find_or_create_by(
       ip_address: request.remote_ip
@@ -36,7 +46,10 @@ protected
   def logged_out?
     !current_user
   end
-  helper_method :logged_in?, :logged_out?
+  def logged_in_as_admin?
+    logged_in? && current_user.admin?
+  end
+  helper_method :logged_in?, :logged_out?, :logged_in_as_admin?
   
 private
   def set_locale

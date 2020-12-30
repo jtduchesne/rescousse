@@ -4,5 +4,13 @@
   %dt.col-5.text-right= User.human_attribute_name(:email) + " :"
   %dd.col-7= @user.email
 
+- if logged_in_as_admin?
+  %dl.row
+    %dt.col-5.text-right= User.human_attribute_name(:role) + " :"
+    %dd.col-7= Role.human_enum_name(:name, @user.role.try(:name) || :usual)
+  .row.justify-content-center
+    = link_to t('.show_places'), places_path, class: "btn btn-primary mx-1"
+    = link_to t('.show_users'), users_path, class: "btn btn-primary mx-1"
+
 - navbar_button(caption: t('edit'), href: edit_current_user_path)
 - navbar_button(caption: t('back'), href: root_path)

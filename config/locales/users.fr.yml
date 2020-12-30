@@ -2,7 +2,7 @@ fr:
   users:
     index:
       title: Utilisateurs inscrits
-      empty: Aucun utilisateur pour l'instant'...
+      empty: Aucun utilisateur pour l'instant...
       edit: Modifier
       delete: Supprimer
       confirm: Êtes-vous sûr de vouloir supprimer '%{name}' ?
@@ -16,5 +16,10 @@ fr:
       user: L'utilisateur
     attributes:
       user:
-        name:       Nom
-        email:      Courriel
+        name:  Nom
+        email: Courriel
+        role:  Rôle
+      role:
+        names:
+          usual:         Aucun
+          administrator: Administrateur
