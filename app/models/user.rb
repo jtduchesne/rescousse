@@ -6,6 +6,7 @@ class User < ApplicationRecord
                     format: { with: /\A[^@,()<>{}\[\]"'\\\/\s]+@[^@,()<>{}\[\]"'\\\/\s]+\z/ }
   
   has_many :authentications, autosave: true
+  has_one :role, autosave: true
   
   def first_name
     @first_name ||= name.split(/\s+/, 2)[0]
@@ -31,5 +32,14 @@ class User < ApplicationRecord
                 "  Error: " + e.inspect + "\n" +
                 "  omniauth_hash: " + auth_hash.inspect
     return nil
+  end
+  
+  def admin?
+    role.present? && role.administrator?
+  end
+  
+private
+  def make_admin!
+    create_role!(name: :administrator)
   end
 end

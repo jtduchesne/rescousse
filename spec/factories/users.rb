@@ -10,5 +10,11 @@ FactoryBot.define do
         create(:authentication, user: user)
       end
     end
+    
+    trait :administrator do
+      after(:create) do |user, evaluator|
+        user.send :make_admin!
+      end
+    end
   end
 end

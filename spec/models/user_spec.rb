@@ -71,6 +71,17 @@ RSpec.describe User, type: :model do
     it { is_expected.to be_a(String) }
   end
   
+  describe '#admin?' do
+    subject { user.admin? }
+    it { is_expected.to be false }
+    
+    context "if user's role is administrator" do
+      let(:user) { FactoryBot.create(:user, :administrator) }
+      
+      it { is_expected.to be true }
+    end
+  end
+  
   #= Associations ===============================================================#
   
   describe '#authentication' do
@@ -79,6 +90,33 @@ RSpec.describe User, type: :model do
     subject { user.authentications }
     it { expect(subject).to be_an(Enumerable) }
     it { expect(subject.take).to be_an(Authentication) }
+  end
+  
+  describe '#role' do
+    let(:user) { FactoryBot.create(:user, :administrator) }
+    
+    subject { user.role }
+    it { expect(subject).to be_a(Role) }
+  end
+  
+  #= Instance Methods ===========================================================#
+  
+  describe '#make_admin!' do
+    let(:user) { FactoryBot.create(:user) }
+    
+    subject { user.send :make_admin! }
+    
+    it "promotes user to administrator" do
+      expect{ subject }.to change{ user.admin? }.from(false).to(true)
+    end
+    
+    it 'cannot be called directly' do
+      expect{ user.make_admin! }.to raise_error(NoMethodError)
+    end
+    it 'cannot be used on more than 1 user' do
+      FactoryBot.create(:user, :administrator)
+      expect{ subject }.to raise_error(ActiveRecord::ActiveRecordError)
+    end
   end
   
   #= Class Methods ==============================================================#

@@ -43,3 +43,6 @@ rails g model Authentication user:belongs_to provider uid
 rails db:migrate
 
 rails g controller User new create destroy show edit update --no-assets
+
+rails g model Role user:belongs_to name
+rails db:migrate
