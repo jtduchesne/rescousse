@@ -20,7 +20,7 @@ FactoryBot.define do
     latitude  { Faker::Address.latitude }
     longitude { Faker::Address.longitude }
     
-    google_maps_id { Faker::Alphanumeric.alphanumeric(number: 16) }
+    uid { Faker::Alphanumeric.alphanumeric(number: 16) }
     
     phone   { "(#{area_code}) #{200+rand(800)}-#{1000+rand(9000)}" }
     transient do

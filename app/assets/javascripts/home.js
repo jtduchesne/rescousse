@@ -8,7 +8,7 @@ function initMap() {
   var $searchButton = $("#searchButton", $form);
   resetForm();
   
-  var $googleMapsId = $("#place_google_maps_id", $form);
+  var $uid = $("#place_uid", $form);
   
   var $latitude  = $("#place_latitude", $form);
   var $longitude = $("#place_longitude", $form);
@@ -24,7 +24,7 @@ function initMap() {
     $searchInput.val(place.name);
     
     if (place.valid) {
-      $googleMapsId.val(place.place_id);
+      $uid.val(place.place_id);
       
       if (place.geometry) {
         $latitude.val(place.geometry.location.lat);

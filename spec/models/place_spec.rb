@@ -27,8 +27,8 @@ RSpec.describe Place, type: :model do
     expect(FactoryBot.build(:place, longitude: "")).to be_invalid
   end
   
-  it 'requires a Google Maps ID' do
-    expect(FactoryBot.build(:place, google_maps_id: "")).to be_invalid
+  it 'requires a Google Maps ID (uid)' do
+    expect(FactoryBot.build(:place, uid: "")).to be_invalid
   end
   
   it 'does not require anything else' do
@@ -208,8 +208,8 @@ RSpec.describe Place, type: :model do
     it { is_expected.to be_a(Float) }
   end
   
-  describe '#google_maps_id' do
-    subject { place.google_maps_id }
+  describe '#uid' do
+    subject { place.uid }
     it { is_expected.to be_a(String) }
   end
   

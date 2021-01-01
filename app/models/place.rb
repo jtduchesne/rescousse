@@ -1,7 +1,7 @@
 class Place < ApplicationRecord
   # Attributes: name, address, hood, city, province, (country), postcode,
   #                   latitude, longitude,
-  #                   google_maps_id, phone, website,
+  #                   uid, phone, website,
   
   attr_accessor :number, :street, :country
   
@@ -9,7 +9,7 @@ class Place < ApplicationRecord
   validates :province, inclusion: {in: %w( QC )}
   validates :country,  inclusion: {in: %w( CA )}, on: :create
   validates :latitude, :longitude, presence: true
-  validates :google_maps_id, presence: true
+  validates :uid, presence: true
   
   def number
     @number.presence || address[/^[^\s,]+/]
@@ -25,7 +25,7 @@ class Place < ApplicationRecord
   before_validation :fetch_details, on: :create
   
   def fetch_details
-    response = self.class.client.get("/maps/api/place/details/json", place_id: google_maps_id)
+    response = self.class.client.get("/maps/api/place/details/json", place_id: uid)
     if response.status == 200
       json = JSON.parse(response.body)
       
