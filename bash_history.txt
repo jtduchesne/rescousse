@@ -49,3 +49,6 @@ rails db:migrate
 
 rails g migration ChangeGoogleMapsIdToUidInPlaces
 rails db:migrate
+
+rails g migration CreateFavoritesJoinTable
+rails db:migrate

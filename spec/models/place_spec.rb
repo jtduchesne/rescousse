@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Place, type: :model do
+  before { stub_google_maps(status: 500) }
+  
   #= Validations ================================================================#
   
   it 'requires a name' do
@@ -42,12 +44,11 @@ RSpec.describe Place, type: :model do
   
   #= Behaviors ==================================================================#
   
-  let(:response) { {status: 500} }
-  let!(:stub) { stub_request(:get, /maps.googleapis.com/).to_return(response) }
-  
   describe 'external API requests (Google Maps API)' do
     let(:new_values) { FactoryBot.build :place }
     let(:valid_hash) { FactoryBot.create(:place_details_hash, place: new_values) }
+    
+    let!(:stub) { stub_google_maps_with(valid_hash, status: try(:status)) }
     
     context 'on creation' do
       subject { place.save! }
@@ -58,7 +59,7 @@ RSpec.describe Place, type: :model do
       end
       
       context 'when response is valid' do
-        let(:response) { {status: 200, body: valid_hash.to_json} }
+        let(:status) { 200 }
         
         it 'sets #address' do
           expect{ subject }.to change{ place.address }.to(new_values.address)
@@ -92,7 +93,7 @@ RSpec.describe Place, type: :model do
         end
       end
       context 'when response is invalid' do
-        let(:response) { {status: 423, body: "Whatever".to_json} }
+        let(:status) { 423 }
         
         it 'does not change #address' do
           expect{ subject }.not_to change{ place.address }
@@ -127,13 +128,11 @@ RSpec.describe Place, type: :model do
     end
     
     context 'on modification' do
-      let(:response) { {status: 200, body: valid_hash.to_json} }
-      
       before do
         @existing_place = FactoryBot.create(:place)
         WebMock.reset!
       end
-      let(:place) { Place.find_by!(name: @existing_place.name) }
+      let(:place) { Place.find_by!(uid: @existing_place.uid) }
       
       subject { place.update(name: "Changed") }
       
@@ -220,5 +219,15 @@ RSpec.describe Place, type: :model do
   describe '#website' do
     subject { place.website }
     it { is_expected.to be_a(String) }
+  end
+  
+  #= Associations ===============================================================#
+  
+  describe '#regulars' do
+    let(:place) { FactoryBot.create(:place, regulars: [FactoryBot.create(:user)]) }
+    
+    subject { place.regulars }
+    it { expect(subject).to be_an(Enumerable) }
+    it { expect(subject.take).to be_a(User) }
   end
 end

@@ -99,6 +99,15 @@ RSpec.describe User, type: :model do
     it { expect(subject).to be_a(Role) }
   end
   
+  describe '#favorites' do
+    before { stub_google_maps }
+    let(:user) { FactoryBot.create(:user, favorites: [FactoryBot.create(:place)]) }
+    
+    subject { user.favorites }
+    it { expect(subject).to be_an(Enumerable) }
+    it { expect(subject.take).to be_a(Place) }
+  end
+  
   #= Instance Methods ===========================================================#
   
   describe '#make_admin!' do

@@ -11,6 +11,8 @@ class Place < ApplicationRecord
   validates :latitude, :longitude, presence: true
   validates :uid, presence: true
   
+  has_and_belongs_to_many :regulars, join_table: :favorites, class_name: 'User'
+  
   def number
     @number.presence || address[/^[^\s,]+/]
   end

@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :authentications, autosave: true
   has_one :role, autosave: true
   
+  has_and_belongs_to_many :favorites, join_table: :favorites, class_name: 'Place'
+  
   def first_name
     @first_name ||= name.split(/\s+/, 2)[0]
   end
