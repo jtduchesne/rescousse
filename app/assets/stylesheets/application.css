@@ -22,11 +22,11 @@ html, body {
 main {
   position: relative;
   min-height: calc(100vh - 35px);
+  padding-top: 50px;
 }
 
 header {
   height: 50px;
-  margin-bottom: 50px;
 }
 header .dropdown-item.small {
   padding: 0.15rem 1rem;
