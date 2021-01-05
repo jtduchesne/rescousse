@@ -1,4 +1,4 @@
-%h1.text-center.mb-4= t('.title')
+%h1.text-center.text-white.mb-4= t(".title.#{current_user.role.name}")
 
 %ul.list-group.my-3
   - if @places.empty?

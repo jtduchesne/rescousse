@@ -2,7 +2,8 @@ require "rails_helper"
 
 RSpec.describe PlacesController, type: :routing do
   describe "FR routing" do
-    it { expect(get: "/endroits").to route_to("places#index", locale: "fr") }
+    it { expect(get: "/endroits").to   route_to("places#index", locale: "fr") }
+    it { expect(get: "/endroits/1").to route_to("places#show",  locale: "fr", id: "1") }
     
     it { expect(post: "/endroits").to route_to("places#create", locale: "fr") }
     
@@ -14,7 +15,8 @@ RSpec.describe PlacesController, type: :routing do
   end
   
   describe "EN routing" do
-    it { expect(get: "/places").to route_to("places#index", locale: "en") }
+    it { expect(get: "/places").to   route_to("places#index", locale: "en") }
+    it { expect(get: "/places/1").to route_to("places#show",  locale: "en", id: "1") }
     
     it { expect(post: "/places").to route_to("places#create", locale: "en") }
     

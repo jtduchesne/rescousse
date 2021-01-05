@@ -1,40 +1,54 @@
 class PlacesController < ApplicationController
-  before_action :require_admin
-  before_action :set_place, only: [:show, :edit, :update, :destroy]
-
-  layout 'jumbotron'
+  before_action :require_login, only: [:index]
 
   # GET /places
   # GET /places.json
   def index
-    @places = Place.order(:postcode).page(params[:page])
+    if logged_in_as_admin?
+      @places = Place.all
+    else
+      @places = current_user.favorites
+    end
+    @places = @places.order(:postcode).page(params[:page])
+    
+    render :index, layout: 'container'
   end
 
   # GET /places/1
   # GET /places/1.json
   def show
-  end
-
-  # GET /places/1/edit
-  def edit
+    @place = Place.find(params[:id])
+    
+    render :show, layout: 'container'
   end
 
   # POST /places
   # POST /places.json
   def create
-    @place = Place.find_or_initialize_by(new_place_params.slice(:uid)) do |place|
+    @place = Place.find_or_create_by!(new_place_params.slice(:uid)) do |place|
       place.assign_attributes(new_place_params)
     end
 
     respond_to do |format|
-      if @place.save
-        format.html { redirect_to action: :show, id: @place.to_param }
-        format.json { render :show, status: :created, location: @place }
-      else
-        format.html { render :new }
-        format.json { render json: @place.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to action: :show, id: @place.to_param }
+      format.json { render :show, status: :created, location: @place }
     end
+  rescue => e
+    logger.warn "PlacesController::create{" + new_place_params.inspect + "} failed.\n" +
+                "  " + e.inspect
+    redirect_to root_url, alert: t('places.create.failure')
+  end
+
+  #--------------------------------------------------------------------------------#
+  with_options only: [:edit, :update, :destroy] do
+    before_action :require_admin
+    before_action :set_place
+    
+    layout 'jumbotron'
+  end
+
+  # GET /places/1/edit
+  def edit
   end
 
   # PATCH/PUT /places/1

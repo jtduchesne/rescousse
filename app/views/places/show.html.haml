@@ -1,20 +1,25 @@
-%h1.text-center.mb-3= t('.title', name: @place.name)
+%h1.text-white.text-center.mb-0= t('.title', name: @place.name)
+%p.text-white.text-center.mb-3
+  %small= "#{@place.address}, #{@place.hood}"
 
-%dl.row.mb-0
-  %dt.col-3.text-right= Place.human_attribute_name(:address) + " :"
-  %dd.col-9= @place.address
-%dl.row.mb-0
-  %dt.col-3.text-right= Place.human_attribute_name(:hood) + " :"
-  %dd.col-9= @place.hood
-%dl.row
-  %dt.col-3.text-right= Place.human_attribute_name(:city) + " :"
-  %dd.col-9= @place.city
-%dl.row.mb-0
-  %dt.col-3.text-right= Place.human_attribute_name(:phone) + " :"
-  %dd.col-9= @place.phone
-%dl.row
-  %dt.col-3.text-right= Place.human_attribute_name(:website) + " :"
-  %dd.col-9= @place.website
+#menu.row.no-gutters.row-cols-2.row-cols-sm-3.row-cols-md-4.row-cols-lg-5.justify-content-center
+  .col
+    %a.card.text-center.bg-light.m-1.text-muted.text-decoration-none{href: "#"}
+      .card-header.text-black Pinte
+      %img.mx-auto{src: "/images/Pinte.png"}
+      .card-footer
+        %small Prix : 10$
+  .col
+    %a.card.text-center.bg-light.m-1.text-muted.text-decoration-none{href: "#"}
+      .card-header Verre
+      %img.mx-auto{src: "/images/Verre.png"}
+      .card-footer
+        %small Prix : 7$
+  .col
+    %a.card.text-center.bg-light.m-1.text-muted.text-decoration-none{href: "#"}
+      .card-header Shooter
+      %img.mx-auto{src: "/images/Shooter.png"}
+      .card-footer
+        %small Prix : 4$
 
-- navbar_button(caption: t('edit'), href: edit_place_path(@place))
-- navbar_button(caption: t('back'), href: places_path)
+- navbar_button(caption: t('back'), href: logged_in? ? places_path : root_path)

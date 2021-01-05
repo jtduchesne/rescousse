@@ -1,7 +1,9 @@
 fr:
   places:
     index:
-      title: Bars déjà cherchés
+      title:
+        administrator: Bars déjà cherchés
+        usual:         Mes bars préférés
       empty: Aucun bar recherché pour l'instant...
       edit: Modifier
       delete: Supprimer
@@ -10,6 +12,9 @@ fr:
       title: "%{name}"
     edit:
       title: "%{name}"
+    create:
+      failure: Une erreur s'est produite. Nous avons déjà été avertis et nous y travaillons probablement déjà.
+               Désolé pour le désagrément, et veuillez réessayer un peu plus tard...
   
   activerecord:
     models:

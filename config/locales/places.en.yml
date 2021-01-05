@@ -1,7 +1,9 @@
 en:
   places:
     index:
-      title: Peviously searched bars
+      title:
+        administrator: Peviously searched bars
+        usual:         My favorite bars
       empty: No bar searched yet...
       edit: Edit
       delete: Delete
@@ -10,6 +12,9 @@ en:
       title: "%{name}"
     edit:
       title: "%{name}"
+    create:
+      failure: Something unexpected occurred. We've already been warned and are probably already working on it.
+               Sorry for the inconvenience, and please try again after a little while...
   
   activerecord:
     models:
