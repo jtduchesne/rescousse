@@ -232,9 +232,14 @@ RSpec.describe Place, type: :model do
   end
   
   describe '#menu' do
-    let(:place) { FactoryBot.create(:place, :with_menu) }
+    let!(:default) { FactoryBot.create(:default_menu) }
+    let(:place)    { FactoryBot.create(:place) }
     
     subject { place.menu }
     it { is_expected.to be_a(Menu) }
+    
+    it 'correspond to the default menu' do
+      expect(subject.items).to match_array default.items
+    end
   end
 end

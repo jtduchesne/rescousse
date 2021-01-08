@@ -10,5 +10,11 @@ FactoryBot.define do
     transient do
       sequence(:n)
     end
+    
+    trait :default do
+      after(:create) do |item|
+        create(:default_menu, items: [item])
+      end
+    end
   end
 end

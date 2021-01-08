@@ -14,6 +14,9 @@ class Place < ApplicationRecord
   has_and_belongs_to_many :regulars, join_table: :favorites, class_name: 'User'
   
   has_one :menu
+  after_create do
+    create_menu(items: DefaultMenu.current.items) if DefaultMenu.any?
+  end
   
   def number
     @number.presence || address[/^[^\s,]+/]

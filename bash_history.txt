@@ -56,3 +56,6 @@ rails db:migrate
 rails g model Item name description size image price:float
 rails g model Menu place:belongs_to --no-migration
 rails db:migrate
+
+rails g model DefaultMenu
+rails db:migrate
