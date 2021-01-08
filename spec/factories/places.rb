@@ -27,5 +27,11 @@ FactoryBot.define do
       area_code { {"G" => "418", "H" => "514", "J" => "819"}[postal_district] }
     end
     website { Faker::Internet.domain_name(domain: name.gsub(/[.'+ ]+/, "-")) }
+    
+    trait :with_menu do
+      after(:create) do |place|
+        create(:menu, place: place)
+      end
+    end
   end
 end

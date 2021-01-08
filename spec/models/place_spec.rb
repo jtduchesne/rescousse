@@ -230,4 +230,11 @@ RSpec.describe Place, type: :model do
     it { expect(subject).to be_an(Enumerable) }
     it { expect(subject.take).to be_a(User) }
   end
+  
+  describe '#menu' do
+    let(:place) { FactoryBot.create(:place, :with_menu) }
+    
+    subject { place.menu }
+    it { is_expected.to be_a(Menu) }
+  end
 end

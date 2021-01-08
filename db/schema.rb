@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_01_005047) do
+ActiveRecord::Schema.define(version: 2021_01_08_035551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -29,6 +29,29 @@ ActiveRecord::Schema.define(version: 2021_01_01_005047) do
   create_table "favorites", id: false, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.uuid "place_id", null: false
+  end
+
+  create_table "items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.string "description"
+    t.string "size"
+    t.string "image"
+    t.float "price"
+    t.index ["name"], name: "index_items_on_name"
+  end
+
+  create_table "menu_items", id: false, force: :cascade do |t|
+    t.uuid "menu_id", null: false
+    t.uuid "item_id", null: false
+  end
+
+  create_table "menus", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.uuid "place_id", null: false
+    t.index ["place_id"], name: "index_menus_on_place_id"
   end
 
   create_table "places", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -74,5 +97,6 @@ ActiveRecord::Schema.define(version: 2021_01_01_005047) do
   end
 
   add_foreign_key "authentications", "users"
+  add_foreign_key "menus", "places"
   add_foreign_key "roles", "users"
 end

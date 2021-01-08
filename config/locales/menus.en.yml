@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      menu: The menu
+      item: The item
+    attributes:
+      item:
+        name:        Item
+        description: Description
+        size:        Size
+        image:       Image
+        price:       Price

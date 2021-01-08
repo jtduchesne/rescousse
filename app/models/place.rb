@@ -13,6 +13,8 @@ class Place < ApplicationRecord
   
   has_and_belongs_to_many :regulars, join_table: :favorites, class_name: 'User'
   
+  has_one :menu
+  
   def number
     @number.presence || address[/^[^\s,]+/]
   end

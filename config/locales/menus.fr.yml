@@ -1,0 +1,12 @@
+fr:
+  activerecord:
+    models:
+      menu: Le menu
+      item: L'item
+    attributes:
+      item:
+        name:        Item
+        description: Description
+        size:        Format
+        image:       Image
+        price:       Prix
