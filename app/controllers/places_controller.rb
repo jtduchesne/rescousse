@@ -17,7 +17,8 @@ class PlacesController < ApplicationController
   # GET /places/1
   # GET /places/1.json
   def show
-    @place = Place.find(params[:id])
+    @place = Place.includes(:menu).find(params[:id])
+    @items = @place.menu.items.order(price: :desc)
     
     render :show, layout: 'container'
   end

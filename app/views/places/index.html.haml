@@ -1,26 +1,18 @@
 %h1.text-center.text-white.mb-4= t(".title.#{current_user.role.name}")
 
-%ul.list-group.my-3
-  - if @places.empty?
-    %li.list-group-item
-      .d-flex.w-100
-        %h6.mb-1.mr-auto= t('.empty')
-        %img.mx-1.my-auto.close.disabled{src: "/images/pencil.svg", width: "16", height: "16"}
-        %img.mx-1.my-auto.close.disabled{src: "/images/trash.svg", width: "14", height: "16"}
-  - else
+- if @places.empty?
+  %p.text-center.text-white.my-3= t('.empty')
+- else
+  #bars.row.no-gutters.row-cols-2.row-cols-sm-3.row-cols-md-4.row-cols-lg-5
     - @places.each do |place|
-      %li.list-group-item.list-group-item-action
-        .d-flex.w-100
-          %h5.mb-1.mr-auto
-            = link_to place.name, place_path(place), class: "text-reset"
-          %small.mx-1.my-auto.text-muted
-            = place.fsa + ", " + place.city
-          = link_to edit_place_path(place), class: "mx-1 close grow", title: t('.edit') do
-            %img.mx-1.my-auto{src: "/images/pencil.svg", width: "16", height: "16"}
-          = link_to place_path(place), class: "mx-1 close grow", title: t('.delete'), method: :delete, data: { confirm: t('.confirm', name: place.name)} do
-            %img.mx-1.my-auto{src: "/images/trash.svg", width: "14", height: "16"}
-        %p.mb-1
-          = link_to place.address + ", " + place.hood, place_path(place), class: "text-reset"
+      .col.mb-2
+        %a.card.text-center.bg-light.mx-1.text-reset.text-decoration-none.h-100{href: place_path(place)}
+          .card-body.py-1.px-0
+            %h5.card-title.mb-0= place.name
+            %p.card-text
+              %small= place.address
+          .card-footer.p-1
+            %small= place.hood + ", " + place.city
 
 - if @places.total_pages > 1
   = paginate @places

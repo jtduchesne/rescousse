@@ -3,23 +3,12 @@
   %small= "#{@place.address}, #{@place.hood}"
 
 #menu.row.no-gutters.row-cols-2.row-cols-sm-3.row-cols-md-4.row-cols-lg-5.justify-content-center
-  .col
-    %a.card.text-center.bg-light.m-1.text-muted.text-decoration-none{href: "#"}
-      .card-header.text-black Pinte
-      %img.mx-auto{src: "/images/Pinte.png"}
-      .card-footer
-        %small Prix : 10$
-  .col
-    %a.card.text-center.bg-light.m-1.text-muted.text-decoration-none{href: "#"}
-      .card-header Verre
-      %img.mx-auto{src: "/images/Verre.png"}
-      .card-footer
-        %small Prix : 7$
-  .col
-    %a.card.text-center.bg-light.m-1.text-muted.text-decoration-none{href: "#"}
-      .card-header Shooter
-      %img.mx-auto{src: "/images/Shooter.png"}
-      .card-footer
-        %small Prix : 4$
+  - @items.each do |item|
+    .col.mb-2
+      %a.card.text-center.bg-light.mx-1.text-reset.text-decoration-none{href: "#", title: item.description}
+        .card-header= item.name
+        %img.mx-auto{src: "/images/#{item.image}.png"}
+        .card-footer.text-muted
+          %small= "#{Item.human_attribute_name(:price)} : #{number_to_currency(item.price)}"
 
 - navbar_button(caption: t('back'), href: logged_in? ? places_path : root_path)
