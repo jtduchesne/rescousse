@@ -62,6 +62,7 @@ private
     else
       I18n.locale = preferred_language || I18n.default_locale
     end
+    @l = I18n.locale
   end
   
   def preferred_language

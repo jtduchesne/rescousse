@@ -5,8 +5,8 @@
 #menu.row.no-gutters.row-cols-2.row-cols-sm-3.row-cols-md-4.row-cols-lg-5.justify-content-center
   - @items.each do |item|
     .col.mb-2
-      %a.card.text-center.bg-light.mx-1.text-reset.text-decoration-none{href: "#", title: item.description}
-        .card-header= item.name
+      %a.card.text-center.bg-light.mx-1.text-reset.text-decoration-none{href: "#", title: item.description[@l]}
+        .card-header= item.name[@l]
         %img.mx-auto{src: "/images/#{item.image}.png"}
         .card-footer.text-muted
           %small= "#{Item.human_attribute_name(:price)} : #{number_to_currency(item.price)}"

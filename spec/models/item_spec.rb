@@ -37,12 +37,17 @@ RSpec.describe Item, type: :model do
   
   describe '#name' do
     subject { item.name }
-    it { is_expected.to be_a(String) }
+    it { is_expected.to be_a(Hash) }
+    it { is_expected.to have_key(:fr) }
+    it { is_expected.to have_key(:en) }
   end
   describe '#description' do
     subject { item.description }
-    it { is_expected.to be_a(String) }
+    it { is_expected.to be_a(Hash) }
+    it { is_expected.to have_key(:fr) }
+    it { is_expected.to have_key(:en) }
   end
+  
   describe '#size' do
     subject { item.size }
     it { is_expected.to be_a(String) }
